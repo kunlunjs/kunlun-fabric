@@ -1,11 +1,11 @@
-# eslint-plugin
+# @kunlunjs/fabric
 
 ESLint/Prettier/StyleLint configuration for Kunlun projects
 
 ## Installation
 
 ```bash
-pnpm i @kunlunjs/fabric eslint prettier stylelint -D
+pnpm i @kunlunjs/fabric eslint @types/eslint prettier @types/prettier stylelint -D
 
 ```
 

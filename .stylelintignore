@@ -1,11 +1,5 @@
-**/*.js
-**/*.jsx
-**/*.ts
-**/*.tsx
-**/*.md
-**/*.cjs
-**/*.json
-**/*.html
+*.js
+*.ts
 **/*.yml
 **/*.yaml
 **/*.lock

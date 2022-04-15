@@ -5,7 +5,7 @@ ESLint/Prettier/StyleLint configuration for Kunlun projects
 ## Installation
 
 ```bash
-pnpm i @kunlunjs/fabric eslint @types/eslint prettier @types/prettier stylelint -D
+pnpm i @kunlunjs/fabric eslint prettier stylelint -D
 
 ```
 
@@ -14,28 +14,18 @@ pnpm i @kunlunjs/fabric eslint @types/eslint prettier @types/prettier stylelint 
 > .eslintrc.js
 
 ```js
-const { defineConfig, eslintConfig } = require('kunlunjs/fabric')
-
 // @ts-check
-module.exports = defineConfig({
-  extends: [eslintConfig]
-})
-// or
 module.exports = {
-  extends: [eslintConfig]
+  extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
 }
 ```
 
 > .prettierrc.js
 
 ```js
-const { prettierConfig } = require('kunlunjs/fabric')
+const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
 
 // @ts-check
-/**
- * @type {import('prettier').Options}
- * @see https://prettier.io/docs/en/options.html
- */
 module.exports = {
   ...prettierConfig
 }
@@ -44,21 +34,16 @@ module.exports = {
 > .stylelintrc.js
 
 ```js
-const { stylelintConfig } = require('kunlunjs/fabric')
-
-/**
- * @type {import('stylelint').Config}
- */
 module.exports = {
-  extends: [stylelintConfig]
+  extends: [require.resolve('@kunlunjs/fabric/dist/stylelint')]
 }
 ```
 
 ## Development
 
-- [.eslintrc.js](.eslintrc.js)
-- [.prettierrc.js](.prettierrc.js)
-- [.stylelintrc.js](.stylelintrc.js)
+- [eslint](src/eslint.ts)
+- [prettier](src/prettier.ts)
+- [stylelint](src/stylelint.ts)
 
 #### build
 

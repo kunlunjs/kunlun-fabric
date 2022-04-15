@@ -1,13 +1,14 @@
+.gitignore
 .husky
 .DS_Store
 .gitignore
 .editorconfig
 .eslintignore
 .prettierignore
+.stylelintignore
 *.lock
 *.yml
 *.yaml
 LICENSE
 
-index.js
-index.d.ts
+dist

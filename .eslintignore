@@ -4,5 +4,4 @@
 .eslintignore
 .prettierignore
 
-index.js
-index.d.ts
+dist

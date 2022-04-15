@@ -1,10 +1,11 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["*.ts"],
+  "include": ["src"],
   "compilerOptions": {
     "declaration": true,
     "noEmit": false,
     "checkJs": false,
-    "target": "ES5"
+    "target": "ES5",
+    "outDir": "dist"
   }
 }

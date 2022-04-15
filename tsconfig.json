@@ -3,12 +3,15 @@
     "checkJs": true,
     "module": "commonjs",
     "target": "ES5",
+    "lib": ["ESNext", "DOM"],
     "noEmit": true,
     "baseUrl": ".",
     "paths": {},
-    "esModuleInterop": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   }
 }

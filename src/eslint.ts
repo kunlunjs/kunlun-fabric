@@ -1,9 +1,8 @@
-const { defineConfig } = require('eslint-define-config')
+import type { Linter } from 'eslint'
 
-require('@rushstack/eslint-patch/modern-module-resolution')
+require.resolve('@rushstack/eslint-patch/modern-module-resolution')
 
-// @ts-check
-module.exports = defineConfig({
+const eslintConfig: Linter.Config = {
   root: true,
   env: {
     es2021: true,
@@ -133,6 +132,7 @@ module.exports = defineConfig({
         '@typescript-eslint/explicit-module-boundary-types': ['off'],
 
         'jest/no-deprecated-functions': ['off'],
+
         // 使用 prettier 格式化规则
         'prettier/prettier': ['error', {}, { usePrettierrc: true }]
       }
@@ -144,4 +144,6 @@ module.exports = defineConfig({
       }
     }
   ]
-})
+}
+
+module.exports = eslintConfig

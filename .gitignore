@@ -105,3 +105,5 @@ dist
 
 yarn.lock
 pnpm-lock.yaml
+index.js
+index.d.ts

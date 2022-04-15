@@ -1,8 +1,13 @@
 .husky
 .DS_Store
+.gitignore
 .editorconfig
 .eslintignore
 .prettierignore
+*.lock
+*.yml
+*.yaml
+LICENSE
 
 index.js
 index.d.ts

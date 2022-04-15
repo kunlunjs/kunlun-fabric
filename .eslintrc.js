@@ -70,6 +70,7 @@ module.exports = defineConfig({
         ],
         // 'linebreak-style': ['error', 'unix'],
 
+        // import 排序
         'import/order': [
           'error',
           {
@@ -110,17 +111,27 @@ module.exports = defineConfig({
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/no-redundant-roles': 'off',
 
+        // 允许空类型
         '@typescript-eslint/ban-types': ['off'],
+        // 允许 @ts-ignore
         '@typescript-eslint/ban-ts-comment': ['off'],
+        // 允许已声明但未使用的变量
         '@typescript-eslint/no-unused-vars': ['off'],
+        // 允许使用 require
         '@typescript-eslint/no-var-requires': ['off'],
         '@typescript-eslint/no-explicit-any': ['off'],
+        // 允许空函数
         '@typescript-eslint/no-empty-function': ['off'],
         '@typescript-eslint/consistent-type-imports': 1,
+        // 允许空类型声明 interface Props {}
         '@typescript-eslint/no-empty-interface': ['off'],
+        // 允许非空断言 data!.type
         '@typescript-eslint/no-non-null-assertion': ['off'],
+        // 允许使用 /// <reference types="react" />
+        // '@typescript-eslint/triple-slash-reference': ['off'],
         '@typescript-eslint/explicit-function-return-type': ['off'],
         '@typescript-eslint/explicit-module-boundary-types': ['off'],
+        // 使用 prettier 格式化规则
         'prettier/prettier': ['error', {}, { usePrettierrc: true }]
       }
     },

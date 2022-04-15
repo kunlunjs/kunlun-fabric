@@ -59,3 +59,9 @@ module.exports = {
 - [.eslintrc.js](.eslintrc.js)
 - [.prettierrc.js](.prettierrc.js)
 - [.stylelintrc.js](.stylelintrc.js)
+
+#### build
+
+```bash
+pnpm build
+```

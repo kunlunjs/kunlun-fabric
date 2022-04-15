@@ -1,6 +1,6 @@
 {
   "name": "@kunlunjs/eslint-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "ESLint configuration for Kunlun projects",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -26,9 +26,7 @@
     "type": "git",
     "url": "git+https://github.com/turing-fe/kunlun-eslint-plugin.git"
   },
-  "keywords": [
-    "ESLint"
-  ],
+  "keywords": ["ESLint"],
   "author": "",
   "license": "ISC",
   "bugs": {

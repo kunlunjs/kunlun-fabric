@@ -1,3 +1,5 @@
 import eslintConfig from './.eslintrc';
+import prettierConfig from './.prettierrc';
 import stylelintConfig from './.stylelintrc';
-export { eslintConfig, stylelintConfig };
+export * from 'eslint-define-config';
+export { eslintConfig, prettierConfig, stylelintConfig };

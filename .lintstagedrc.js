@@ -1,5 +1,5 @@
 module.exports = {
-  '**/*.{js,jsx,sts,tsx}': [
+  '*.{js,jsx,sts,tsx}': [
     // https://eslint.org/docs/user-guide/command-line-interface
     'eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --fix --color --'
   ],

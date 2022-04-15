@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["*.ts"],
+  "compilerOptions": {
+    "declaration": true,
+    "noEmit": false,
+    "checkJs": false,
+    "target": "ES5"
+  }
+}

@@ -1,0 +1,8 @@
+.husky
+.DS_Store
+.editorconfig
+.eslintignore
+.prettierignore
+
+index.js
+index.d.ts

@@ -64,6 +64,17 @@ module.exports = {
 }
 ```
 
+## Attention
+
+eslint 和 prettier 可能会默认不检查 . 命名开头的文件，如 .eslintrc.js、.prettierrc.js 等，需要在 .eslintignore 和 .prettierignore 中加入强制开启检查
+
+```
+!.commitlintrc.js
+!.eslintrc.js
+!.prettierrc.js
+!.stylelintrc.js
+```
+
 ## Development
 
 <b>默认配置规则如下</b>

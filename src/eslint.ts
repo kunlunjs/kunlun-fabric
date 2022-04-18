@@ -109,6 +109,9 @@ const eslintConfig: Linter.Config = {
         'jsx-a11y/no-autofocus': 'off',
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/no-redundant-roles': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/no-noninteractive-element-interactions': 'off',
 
         // 允许空类型
         '@typescript-eslint/ban-types': ['off'],
@@ -130,6 +133,7 @@ const eslintConfig: Linter.Config = {
         // '@typescript-eslint/triple-slash-reference': ['off'],
         '@typescript-eslint/explicit-function-return-type': ['off'],
         '@typescript-eslint/explicit-module-boundary-types': ['off'],
+        '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
 
         'jest/no-deprecated-functions': ['off'],
 

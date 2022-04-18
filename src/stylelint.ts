@@ -13,6 +13,7 @@ const stylelintConfig: Config = {
     'block-no-empty': null,
     'no-empty-source': null,
     'at-rule-no-unknown': null,
+    'selector-class-pattern': null,
     'no-descending-specificity': null
   },
   plugins: ['stylelint-declaration-block-no-ignored-properties']

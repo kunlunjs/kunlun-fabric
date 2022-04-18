@@ -1,5 +1,6 @@
 import type { Linter } from 'eslint'
 
+require('eslint-import-resolver-typescript')
 require.resolve('@rushstack/eslint-patch/modern-module-resolution')
 
 const eslintConfig: Linter.Config = {
@@ -104,6 +105,8 @@ const eslintConfig: Linter.Config = {
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/no-unescaped-entities': 'off',
+
+        'react-hooks/exhaustive-deps': 'off',
 
         'jsx-a11y/aria-role': ['off'],
         'jsx-a11y/no-autofocus': 'off',

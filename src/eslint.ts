@@ -44,9 +44,11 @@ const eslintConfig: Linter.Config = {
         }
       },
       env: {
-        es2021: true,
-        node: true,
-        browser: true
+        'es2021': true,
+        'node': true,
+        'browser': true,
+        'jest/globals': true,
+        'cypress/globals': true
       },
       extends: [
         'eslint:recommended',
@@ -58,6 +60,7 @@ const eslintConfig: Linter.Config = {
         'plugin:jest/recommended',
         'plugin:jest-dom/recommended',
         'plugin:testing-library/react',
+        'plugin:cypress/recommended',
         'plugin:prettier/recommended'
       ],
       plugins: ['import', 'unused-imports', 'tailwindcss'],

@@ -35,7 +35,7 @@ module.exports = defineConfig({
 })
 ```
 
-> .prettierrc.js
+> prettier.config.js
 
 ```js
 const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
@@ -52,7 +52,7 @@ module.exports = {
 }
 ```
 
-> .stylelintrc.js
+> stylelint.config.js
 
 ```js
 // @ts-check

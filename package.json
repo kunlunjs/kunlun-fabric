@@ -1,13 +1,16 @@
 {
   "name": "@kunlunjs/fabric",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "ESLint/Prettier/StyleLint configuration for Kunlun projects",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "files": ["src", "dist"],
+  "files": [
+    "src",
+    "dist"
+  ],
   "engines": {
     "node": ">=16.14.0"
   },
@@ -23,7 +26,11 @@
     "type": "git",
     "url": "git+https://github.com/turing-fe/kunlun-fabric.git"
   },
-  "keywords": ["ESLint", "Prettier", "StyleLint"],
+  "keywords": [
+    "ESLint",
+    "Prettier",
+    "StyleLint"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

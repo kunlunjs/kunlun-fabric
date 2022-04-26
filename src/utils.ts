@@ -9,8 +9,12 @@ import { cwd, pkg } from './generator'
 export function isExist(
   key: 'eslintConfig' | 'prettier' | 'stylelint',
   config: string[]
-): boolean {
+): boolean | null {
   let flag = false
+  // TODO: stylelint 配置在前端项目才需要
+  // if (key === 'stylelint' && !pkg?.devDependencies?.stylelint) {
+  //   return null
+  // }
   if (pkg[key]) {
     flag = true
   } else {

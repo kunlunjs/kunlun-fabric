@@ -1,17 +1,13 @@
 import { resolve } from 'path'
 import fs from 'fs-extra'
 import emoji from 'node-emoji'
+import { isExist, writeFile } from './utils'
 
-const cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
-console.log('cwd: ', cwd)
-const pkg = require(resolve(cwd, 'package.json'))
+export const cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
+export const pkg = require(resolve(cwd, 'package.json'))
 
 // https://editorconfig.org/
-const editorconfig = resolve(cwd, '.editorconfig')
-if (!fs.pathExistsSync(editorconfig)) {
-  console.log(`${emoji.get(':white_check_mark:')} .editorconfig`)
-  fs.writeFileSync(editorconfig, fs.readFileSync(editorconfig))
-}
+writeFile('.editorconfig')
 
 // https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
 const eslintConfig = [
@@ -22,16 +18,7 @@ const eslintConfig = [
   '.eslintrc.json'
 ]
 
-let eslint = false
-if (pkg.eslintConfig) {
-  eslint = true
-} else {
-  for (const e of eslintConfig) {
-    if (fs.pathExistsSync(resolve(cwd, e))) {
-      eslint = true
-    }
-  }
-}
+const eslint = isExist('stylelint', eslintConfig)
 if (!eslint) {
   console.log(`${emoji.get(':white_check_mark:')} .eslintrc.js`)
   fs.writeFileSync(
@@ -46,27 +33,7 @@ module.exports = {
 `
   )
 }
-const eslintIgnore = resolve(cwd, '.eslintIgnore')
-if (!fs.pathExistsSync(eslintIgnore)) {
-  console.log(`${emoji.get(':white_check_mark:')} .eslintignore`)
-  fs.writeFileSync(
-    eslintIgnore,
-    `
-.gitignore
-.husky
-.DS_Store
-.gitignore
-.editorconfig
-.eslintignore
-.prettierignore
-.stylelintignore
-*.lock
-*.yml
-*.yaml
-LICENSE
-`
-  )
-}
+writeFile('.eslintignore')
 
 // https://prettier.io/docs/en/configuration.html
 const prettierConfig = [
@@ -80,17 +47,7 @@ const prettierConfig = [
   '.prettierrc.toml'
 ]
 
-let prettier = false
-if (pkg.prettier) {
-  prettier = true
-} else {
-  for (const p of prettierConfig) {
-    if (fs.pathExistsSync(resolve(cwd, p))) {
-      prettier = true
-    }
-  }
-}
-
+const prettier = isExist('prettier', prettierConfig)
 if (!prettier) {
   console.log(`${emoji.get(':white_check_mark:')} prettier.config.js`)
   fs.writeFileSync(
@@ -110,27 +67,7 @@ module.exports = {
 `
   )
 }
-const prettierIgnore = resolve(cwd, '.prettierignore')
-if (!fs.pathExistsSync(prettierIgnore)) {
-  console.log(`${emoji.get(':white_check_mark:')} .prettierignore`)
-  fs.writeFileSync(
-    prettierIgnore,
-    `
-.gitignore
-.husky
-.DS_Store
-.gitignore
-.editorconfig
-.eslintignore
-.prettierignore
-.stylelintignore
-*.lock
-*.yml
-*.yaml
-LICENSE
-`
-  )
-}
+writeFile('.prettierignore')
 
 // https://stylelint.io/user-guide/configure
 const stylelintConfig = [
@@ -142,17 +79,8 @@ const stylelintConfig = [
   '.stylelintrc.yml',
   '.stylelintrc.js'
 ]
-let stylelint = false
-if (pkg.stylelint) {
-  stylelint = true
-} else {
-  for (const p of stylelintConfig) {
-    if (fs.pathExistsSync(resolve(cwd, p))) {
-      stylelint = true
-    }
-  }
-}
 
+const stylelint = isExist('stylelint', stylelintConfig)
 if (!stylelint) {
   console.log(`${emoji.get(':white_check_mark:')} stylelint.config.js`)
   fs.writeFileSync(
@@ -167,19 +95,4 @@ module.exports = {
 `
   )
 }
-const stylelintIgnore = resolve(cwd, '.stylelintignore')
-if (!fs.pathExistsSync(stylelintIgnore)) {
-  console.log(`${emoji.get(':white_check_mark:')} .stylelintignore`)
-  fs.writeFileSync(
-    stylelintIgnore,
-    `
-**/*.js
-**/*.ts
-**/*.yml
-**/*.yaml
-**/*.lock
-**/*.prisma
-**/*.graphql
-`
-  )
-}
+writeFile('.stylelintignore')

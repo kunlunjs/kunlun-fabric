@@ -9,7 +9,11 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    ".editorconfig",
+    ".eslintignore",
+    ".prettierignore",
+    ".stylelintignore"
   ],
   "engines": {
     "node": ">=16.14.0"
@@ -26,11 +30,7 @@
     "type": "git",
     "url": "git+https://github.com/turing-fe/kunlun-fabric.git"
   },
-  "keywords": [
-    "ESLint",
-    "Prettier",
-    "StyleLint"
-  ],
+  "keywords": ["ESLint", "Prettier", "StyleLint"],
   "author": "",
   "license": "ISC",
   "bugs": {

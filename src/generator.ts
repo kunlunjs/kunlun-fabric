@@ -1,6 +1,6 @@
 import { resolve } from 'path'
+import chalk from 'chalk'
 import fs from 'fs-extra'
-import emoji from 'node-emoji'
 import { isExist, writeFile } from './utils'
 
 export const cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
@@ -18,14 +18,15 @@ const eslintConfig = [
   '.eslintrc.json'
 ]
 
-const eslint = isExist('stylelint', eslintConfig)
+const eslint = isExist('eslintConfig', eslintConfig)
 if (!eslint) {
-  console.log(`${emoji.get(':white_check_mark:')} .eslintrc.js`)
+  console.log(chalk.green(`√ ${chalk.gray('.eslintrc.js')}`))
   fs.writeFileSync(
     resolve(cwd, '.eslintrc.js'),
     `// @ts-check
 /**
  * @type {import('eslint').Linter.Config}
+ * @see https://github.com/turing-fe/kunlun-fabric/blob/main/src/eslint.ts
  */
 module.exports = {
   extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
@@ -49,15 +50,15 @@ const prettierConfig = [
 
 const prettier = isExist('prettier', prettierConfig)
 if (!prettier) {
-  console.log(`${emoji.get(':white_check_mark:')} prettier.config.js`)
+  console.log(chalk.green(`√ ${chalk.gray('prettier.config.js')}`))
   fs.writeFileSync(
     resolve(cwd, 'prettier.config.js'),
     `// @ts-check
 const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
 
 /**
- * 安装 @types/prettier，可选
  * @type {import('prettier').Config}
+ * @see https://github.com/turing-fe/kunlun-fabric/blob/main/src/prettier.ts
  */
 module.exports = {
   ...prettierConfig,
@@ -82,12 +83,13 @@ const stylelintConfig = [
 
 const stylelint = isExist('stylelint', stylelintConfig)
 if (!stylelint) {
-  console.log(`${emoji.get(':white_check_mark:')} stylelint.config.js`)
+  console.log(chalk.green(`√ ${chalk.gray('stylelint.config.js')}`))
   fs.writeFileSync(
     resolve(cwd, 'stylelint.config.js'),
     `// @ts-check
 /**
  * @type {import('stylelint').Config}
+ * @see https://github.com/turing-fe/kunlun-fabric/blob/main/src/stylelint.ts
  */
 module.exports = {
   extends: [require.resolve('@kunlunjs/fabric/dist/stylelint')]

@@ -1,6 +1,9 @@
 import { resolve } from 'path'
+import chalk from 'chalk'
 import fs from 'fs-extra'
-import emoji from 'node-emoji'
+// https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
+// ${emoji.get(':white_check_mark:')}
+// import emoji from 'node-emoji'
 import { cwd, pkg } from './generator'
 
 export function isExist(
@@ -30,7 +33,7 @@ export function writeFile(
 ) {
   const editorconfig = resolve(cwd, file)
   if (!fs.existsSync(editorconfig)) {
-    console.log(`${emoji.get(':white_check_mark:')} ${file}`)
+    console.log(chalk.green(`√ ${chalk.gray(file)}`))
     fs.writeFileSync(
       editorconfig,
       fs.readFileSync(resolve(__dirname, `../${file}`))

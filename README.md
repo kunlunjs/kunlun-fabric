@@ -16,24 +16,25 @@ pnpm i @types/prettier @types/eslint -D
 
 在项目根目录建如下文件
 
-> .eslintrc.js
+<details>
+  <summary>.eslintrc.js</summary>
+  ```js
+  // @ts-check
+  /**
+  * @type {import('eslint').Linter.Config}
+  */
+  module.exports = {
+    extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
+  }
 
-```js
-// @ts-check
-/**
- * @type {import('eslint').Linter.Config}
- */
-module.exports = {
-  extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
-}
+  // 或者安装使用 pnpm i eslint-define-config -D
+  const { defineConfig } = require('eslint-define-config')
+  module.exports = defineConfig({
+    extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
+  })
+  ```
+</details>
 
-// 或者安装使用 pnpm i eslint-define-config -D
-
-const { defineConfig } = require('eslint-define-config')
-module.exports = defineConfig({
-  extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
-})
-```
 
 > prettier.config.js
 
@@ -42,15 +43,15 @@ const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
 
 // @ts-check
 /**
- * 安装 @types/prettier，可选
- * @type {import('prettier').Config}
- */
+* 安装 @types/prettier，可选
+* @type {import('prettier').Config}
+*/
 module.exports = {
-  ...prettierConfig,
-  // 如果使用了 tailwindcss，默认查找 prettier 配置文件同目录的 tailwindcss.config.js 文件，在其它位置则需指定，如
-  tailwindConfig: './packages/web/tailwind.config.js'
+...prettierConfig,
+// 如果使用了 tailwindcss，默认查找 prettier 配置文件同目录的 tailwindcss.config.js 文件，在其它位置则需指定，如
+tailwindConfig: './packages/web/tailwind.config.js'
 }
-```
+````
 
 > stylelint.config.js
 

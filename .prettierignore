@@ -1,5 +1,7 @@
-.gitignore
 .husky
+*.md
+.gitignore
+.github
 .DS_Store
 .gitignore
 .editorconfig

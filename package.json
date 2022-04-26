@@ -1,6 +1,6 @@
 {
   "name": "@kunlunjs/fabric",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "ESLint/Prettier/StyleLint configuration for Kunlun projects",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

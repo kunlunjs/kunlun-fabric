@@ -18,7 +18,8 @@ pnpm i @types/prettier @types/eslint -D
 
 <details>
   <summary>.eslintrc.js</summary>
-  <pre><code>
+
+  ```js
 // @ts-check
 /**
 * @type {import('eslint').Linter.Config}
@@ -30,15 +31,16 @@ module.exports = {
 // 或者安装使用 pnpm i eslint-define-config -D
 const { defineConfig } = require('eslint-define-config')
 module.exports = defineConfig({
-extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
+  extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
 })
 
-  </pre></code>
+  ```
 </details>
 
 <details>
   <summary>prettier.config.js</summary>
-  <pre><code>
+
+  ```js
 // @ts-check
 const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
 
@@ -48,15 +50,16 @@ const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
  */
 module.exports = {
   ...prettierConfig,
-  // 如果使用了 tailwindcss，默认查找 prettier 配置文件同目录的 tailwindcss.config.js 文件，在其它位置则需指定，如
+  // 如需使用 tailwindcss 插件，默认查找 prettier 同目录的 tailwindcss 配置文件，在其它位置则需指定，如
   // tailwindConfig: './packages/web/tailwind.config.js'
 }
-  </pre></code>
+  ```
 </details>
 
 <details>
   <summary>stylelint.config.js</summary>
-  <pre><code>
+
+  ```js
 // @ts-check
 /**
  * @type {import('stylelint').Config}
@@ -64,7 +67,7 @@ module.exports = {
 module.exports = {
   extends: [require.resolve('@kunlunjs/fabric/dist/stylelint')]
 }
-  </pre></code>
+  ```
 </details>
 
 ## Attention

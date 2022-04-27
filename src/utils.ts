@@ -1,13 +1,17 @@
+import { mkdirSync } from 'fs'
 import { resolve } from 'path'
 import chalk from 'chalk'
 import { existsSync, writeFileSync, readFileSync } from 'fs-extra'
 // https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
 // ${emoji.get(':white_check_mark:')}
 // import emoji from 'node-emoji'
-import * as configs from './configs'
+import { configs } from './configs'
 
-export const cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
-export const pkg = require(resolve(cwd, 'package.json'))
+let cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
+if (cwd === __dirname) {
+  cwd = process.cwd()
+}
+const pkg = require(resolve(cwd, 'package.json'))
 
 type PackageConfigName = keyof typeof configs
 
@@ -63,12 +67,29 @@ export function generateConfig(
     filePath?: string
   }
 ) {
-  const isExistEslint = isExist(configs[packageKey], packageKey)
-  if (!isExistEslint) {
-    console.log(chalk.green(`√ ${chalk.gray(file)}`))
-    writeFileSync(
-      resolve(cwd, file),
-      readFileSync(resolve(__dirname, filePath || `../generate/${file}`))
-    )
+  if (packageKey) {
+    const isExistEslint = isExist(configs[packageKey], packageKey)
+    if (!isExistEslint) {
+      console.log(chalk.green(`√ ${chalk.gray(file)}`))
+      writeFileSync(
+        resolve(cwd, file),
+        readFileSync(resolve(__dirname, filePath))
+      )
+    }
+  } else if (filePath?.match(/\.husky/)) {
+    const dir = resolve(cwd, '.husky')
+    const fileName = `.husky${filePath.match(/\/([\w-]+)$/)[0]}`
+    const dest = resolve(cwd, fileName)
+    if (!existsSync(dest)) {
+      if (!existsSync(dir)) {
+        mkdirSync(dir)
+      }
+      console.log(chalk.green(`√ ${chalk.gray(fileName)}`))
+      writeFileSync(dest, readFileSync(resolve(__dirname, filePath)))
+    }
+  } else if (filePath?.match(/verify-commit-msg/)) {
+    const dest = resolve(cwd, `verify-commit-msg.js`)
+    console.log(chalk.green(`√ ${chalk.gray('verify-commit-msg.js')}`))
+    writeFileSync(dest, readFileSync(filePath))
   }
 }

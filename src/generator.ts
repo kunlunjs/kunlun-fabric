@@ -25,6 +25,7 @@ generateConfig('prepare-commit-msg', {
   filePath: resolve(__dirname, '../.husky/prepare-commit-msg')
 })
 generateConfig('lint-staged.config.js', {
+  packageKey: 'lint-staged',
   filePath: resolve(__dirname, '../lint-staged.config.js')
 })
 generateConfig('verify-commit-msg.js', {

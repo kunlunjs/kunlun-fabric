@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": ["src"],
+  "exclude": ["generate"],
   "compilerOptions": {
     "declaration": true,
     "noEmit": false,

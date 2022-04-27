@@ -12,4 +12,5 @@
 *.yaml
 LICENSE
 
+generate
 dist

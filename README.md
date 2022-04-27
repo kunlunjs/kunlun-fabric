@@ -7,7 +7,7 @@ ESLint/Prettier/StyleLint configuration for Kunlun projects
 <b>如要使 eslint、prettier、stylelint 配置生效，必须要安装对应包</b>
 
 ```bash
-pnpm i @kunlunjs/fabric eslint prettier stylelint -D
+pnpm i @kunlunjs/fabric eslint prettier stylelint husky lint-staged -D
 # optional
 pnpm i @types/prettier @types/eslint -D
 ```
@@ -16,59 +16,14 @@ pnpm i @types/prettier @types/eslint -D
 
 在项目根目录将会自动生成建如下文件
 
-<details>
-  <summary>.eslintrc.js</summary>
-
-  ```js
-// @ts-check
-/**
-* @type {import('eslint').Linter.Config}
-*/
-module.exports = {
-  extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
-}
-
-// 或者安装使用 pnpm i eslint-define-config -D
-const { defineConfig } = require('eslint-define-config')
-module.exports = defineConfig({
-  extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
-})
-
-  ```
-</details>
-
-<details>
-  <summary>prettier.config.js</summary>
-
-  ```js
-// @ts-check
-const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
-
-/**
- * 安装 @types/prettier，可选
- * @type {import('prettier').Config}
- */
-module.exports = {
-  ...prettierConfig,
-  // 如需使用 tailwindcss 插件，默认查找 prettier 同目录的 tailwindcss 配置文件，在其它位置则需指定，如
-  // tailwindConfig: './packages/web/tailwind.config.js'
-}
-  ```
-</details>
-
-<details>
-  <summary>stylelint.config.js</summary>
-
-  ```js
-// @ts-check
-/**
- * @type {import('stylelint').Config}
- */
-module.exports = {
-  extends: [require.resolve('@kunlunjs/fabric/dist/stylelint')]
-}
-  ```
-</details>
+- [verify-commit-msg.js]("./dist/verify-commit-msg.js") 检查 git commit message 格式是否满足要求
+- [.husky/commit-msg]("./.husky/commit-msg") 触发执行 verify-commit-msg
+- [.husky/pre-commit]("./.husky/pre-commit") 触发 lint-staged
+- [.husky/prepare-commit-msg]("./.husky/prepare-commit-msg") 触发为 git commit message 增加图标前缀
+- [lint-staged.config.js]("./lint-staged.config.js") 提交文件
+- [.eslintrc.js]("./generate/eslintrc") JS/TS 语法检查
+- [prettier.config.js]("./generate/prettier") 格式化
+- [stylelint.config.js]("./generate/stylelint") 样式检查
 
 ## Attention
 

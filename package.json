@@ -14,7 +14,8 @@
     ".eslintignore",
     ".prettierignore",
     ".stylelintignore",
-    "lint-staged.config.js"
+    "lint-staged.config.js",
+    "verify-commit-msg.js"
   ],
   "engines": {
     "node": ">=16.14.0"
@@ -22,7 +23,6 @@
   "scripts": {
     "prepare": "husky install",
     "build": "tsc -p tsconfig.build.json",
-    "postbuild": "cp src/verify-commit-msg.js dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "node dist/generator.js",
     "prerelease": "npm run build",
@@ -32,11 +32,7 @@
     "type": "git",
     "url": "git+https://github.com/turing-fe/kunlun-fabric.git"
   },
-  "keywords": [
-    "ESLint",
-    "Prettier",
-    "StyleLint"
-  ],
+  "keywords": ["ESLint", "Prettier", "StyleLint"],
   "author": "",
   "license": "ISC",
   "bugs": {

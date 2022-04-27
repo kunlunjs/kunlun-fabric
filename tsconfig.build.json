@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": ["src"],
-  "exclude": ["generate", "src/verify-commit-msg.js"],
+  "exclude": ["generate"],
   "compilerOptions": {
     "declaration": true,
     "noEmit": false,

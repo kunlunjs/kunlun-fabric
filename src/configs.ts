@@ -1,11 +1,12 @@
 export const configs = {
+  // https://github.com/okonet/lint-staged#configuration
   'lint-staged': [
     '.lintstagedrc.json',
     '.lintstagedrc.yaml',
     '.lintstagedrc.yml',
     '.lintstagedrc.mjs',
     '.lintstagedrc.cjs',
-    'lintstaged.config.js',
+    'lint-staged.config.js',
     '.lintstagedrc.js'
   ],
   // https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats

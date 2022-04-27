@@ -1,7 +1,9 @@
 import type { Linter } from 'eslint'
 
+require('@typescript-eslint/parser')
+require('@typescript-eslint/eslint-plugin')
 require('eslint-import-resolver-typescript')
-require.resolve('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution')
 
 const eslintConfig: Linter.Config = {
   root: true,

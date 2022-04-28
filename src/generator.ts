@@ -61,17 +61,17 @@ const devDependencies = [
 ]
 
 async function run() {
-  const uninstalled: string[] = devDependencies
-  // for (const dep of devDependencies) {
-  //   // NOTE: 避免重复安装依赖
-  //   // require(cdep)
-  //   // require.resolve(dep.split('@types/').filter(Boolean)[0], {
-  //   //   paths: [resolve(cwd, 'node_modules'), resolve(cwd, 'node_modules/@types')]
-  //   // })
-  //   if (!existsSync(resolve(cwd, `node_modules/${dep}`))) {
-  //     uninstalled.push(dep)
-  //   }
-  // }
+  const uninstalled: string[] = []
+  for (const dep of devDependencies) {
+    // NOTE: 避免重复安装依赖
+    // require(cdep)
+    // require.resolve(dep.split('@types/').filter(Boolean)[0], {
+    //   paths: [resolve(cwd, 'node_modules'), resolve(cwd, 'node_modules/@types')]
+    // })
+    if (!existsSync(resolve(cwd, `node_modules/${dep}`))) {
+      uninstalled.push(dep)
+    }
+  }
   if (uninstalled.length) {
     const spinner = ora({
       text: `Installation in progress... ${get('coffee')}\n`,

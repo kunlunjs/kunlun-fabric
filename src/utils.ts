@@ -6,12 +6,7 @@ import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
 // ${emoji.get(':white_check_mark:')}
 // import emoji from 'node-emoji'
 import { configFiles } from './configs'
-
-export let cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
-if (cwd === __dirname) {
-  cwd = process.cwd()
-}
-export const pkg = require(resolve(cwd, 'package.json'))
+import { cwd, pkg } from './root'
 
 type packageFieldName = keyof typeof configFiles
 

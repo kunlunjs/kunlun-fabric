@@ -4,7 +4,8 @@ import chalk from 'chalk'
 import { existsSync } from 'fs-extra'
 import { get } from 'node-emoji'
 import ora from 'ora'
-import { cwd, execPromise, generateFile, ignores, writeFile } from './utils'
+import { cwd, pkg } from './root'
+import { execPromise, generateFile, ignores, writeFile } from './utils'
 
 generateFile('commit-msg', {
   contentFile: '../.husky/commit-msg',
@@ -68,7 +69,12 @@ async function run() {
     // require.resolve(dep.split('@types/').filter(Boolean)[0], {
     //   paths: [resolve(cwd, 'node_modules'), resolve(cwd, 'node_modules/@types')]
     // })
-    if (!existsSync(resolve(cwd, `node_modules/${dep}`))) {
+    // TODO: 支持从命令行中判断是否有相关依赖
+    if (
+      !pkg?.devDependencies?.[dep] &&
+      !pkg?.dependencies?.[dep] &&
+      !existsSync(resolve(cwd, `node_modules/${dep}`))
+    ) {
       uninstalled.push(dep)
     }
   }

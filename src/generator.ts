@@ -1,11 +1,10 @@
-import { execSync } from 'child_process'
 import process from 'node:process'
 import { resolve } from 'path'
 import chalk from 'chalk'
 import { existsSync } from 'fs-extra'
 import { get } from 'node-emoji'
 import ora from 'ora'
-import { cwd, generateFile, ignores, writeFile } from './utils'
+import { cwd, execPromise, generateFile, ignores, writeFile } from './utils'
 
 generateFile('commit-msg', {
   contentFile: '../.husky/commit-msg',
@@ -61,56 +60,69 @@ const devDependencies = [
   'typescript'
 ]
 
-const uninstalled: string[] = []
-for (const dep of devDependencies) {
-  // NOTE: 避免重复安装依赖
-  // require(cdep)
-  // require.resolve(dep.split('@types/').filter(Boolean)[0], {
-  //   paths: [resolve(cwd, 'node_modules'), resolve(cwd, 'node_modules/@types')]
-  // })
-  if (!existsSync(resolve(cwd, `node_modules/${dep}`))) {
-    uninstalled.push(dep)
+async function run() {
+  const uninstalled: string[] = []
+  for (const dep of devDependencies) {
+    // NOTE: 避免重复安装依赖
+    // require(cdep)
+    // require.resolve(dep.split('@types/').filter(Boolean)[0], {
+    //   paths: [resolve(cwd, 'node_modules'), resolve(cwd, 'node_modules/@types')]
+    // })
+    if (!existsSync(resolve(cwd, `node_modules/${dep}`))) {
+      uninstalled.push(dep)
+    }
+  }
+  if (uninstalled.length) {
+    const spinner = ora({
+      text: `Installation in progress... ${get('coffee')}\n`,
+      spinner: process.argv[2] as any
+      // spinner: {
+      //   interval: 120,
+      //   frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
+      // }
+    })
+    spinner.start()
+    try {
+      for (const dep of uninstalled) {
+        let command = 'pnpm'
+        let install = 'i'
+        const noPnpmLock = existsSync(resolve(cwd, 'pnpm-lock.yaml'))
+        if (noPnpmLock && existsSync(resolve(cwd, 'yarn.lock'))) {
+          command = 'yarn'
+          install = 'add'
+        } else if (
+          noPnpmLock &&
+          existsSync(resolve(cwd, 'package-json.lock'))
+        ) {
+          command = 'npm'
+        }
+        // 是否 pnpm monorepo
+        let W = ''
+        if (existsSync(resolve(cwd, 'pnpm-workspace.yaml'))) {
+          W = '-W'
+        }
+        // TODO: yarn workspace
+        // NOTE: husky 依赖 git
+        if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
+          console.log(chalk.gray(`git init\n`))
+          await execPromise(`git init`)
+        }
+        // 初始化 husky
+        if (dep === 'husky' && !existsSync(resolve(cwd, '.husky'))) {
+          console.log(chalk.gray('yes | npx husky install'))
+          await execPromise('yes | npx husky install')
+        }
+        await execPromise(`${command} ${install} ${dep} -D ${W}`)
+      }
+      spinner.succeed(`Installed ${devDependencies.join(', ')}`)
+    } catch (error) {
+      spinner.fail(
+        `Install failed with ${devDependencies.join(
+          ', '
+        )}, you may install them yourself`
+      )
+    }
   }
 }
-if (uninstalled.length) {
-  const spinner = ora({
-    text: `Installation in progress... ${get('coffee')}\n`,
-    spinner: process.argv[2] as any
-    // spinner: {
-    //   interval: 120,
-    //   frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
-    // }
-  })
-  spinner.start()
-  for (const dep of uninstalled) {
-    let command = 'pnpm'
-    let install = 'i'
-    const noPnpmLock = existsSync(resolve(cwd, 'pnpm-lock.yaml'))
-    if (noPnpmLock && existsSync(resolve(cwd, 'yarn.lock'))) {
-      command = 'yarn'
-      install = 'add'
-    } else if (noPnpmLock && existsSync(resolve(cwd, 'package-json.lock'))) {
-      command = 'npm'
-    }
-    // 是否 pnpm monorepo
-    let W = ''
-    if (existsSync(resolve(cwd, 'pnpm-workspace.yaml'))) {
-      W = '-W'
-    }
-    // TODO: yarn workspace
-    // NOTE: husky 依赖 git
-    if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
-      console.log(chalk.gray(`git init\n`))
-      execSync(`git init`)
-    }
-    // 初始化 husky
-    if (dep === 'husky' && !existsSync(resolve(cwd, '.husky'))) {
-      console.log(chalk.gray('yes | npx husky install'))
-      execSync('yes | npx husky install')
-    }
-    execSync(`${command} ${install} ${dep} -D ${W}`)
-  }
-  setTimeout(() => {
-    spinner.succeed(`Installed ${devDependencies.join(', ')}`)
-  }, 3000)
-}
+
+run()

@@ -10,7 +10,7 @@ pnpm i @kunlunjs/fabric -D
 
 ## Usage
 
-在项目根目录将会自动生成如下文件，其中 ESLint/Prettier/StyleLint 判断依据是包含[这些文件]("./src/configs.ts")，
+在项目根目录将会自动生成如下文件，其中 ESLint/Prettier/StyleLint 判断依据是是否包含[这些文件](./src/configs.ts)，
 自动安装如下依赖 @types/prettier @types/eslint、eslint、prettier、stylelint、husky、lint-staged、typescript，
 由于 husky 的初始化需要依赖 git，所以会先判断 .git 是否存在，如不存在会先使用 `git init` 初始化 git 环境。
 
@@ -33,7 +33,6 @@ pnpm i @kunlunjs/fabric -D
 eslint 和 prettier 可能会默认不检查 . 命名开头的文件，如 .eslintrc.js、.prettierrc.js 等，需要在 .eslintignore 和 .prettierignore 中加入强制开启检查
 
 ```
-!.commitlintrc.js
 !.eslintrc.js
 !.prettierrc.js
 !.stylelintrc.js
@@ -57,7 +56,7 @@ eslint 和 prettier 可能会默认不检查 . 命名开头的文件，如 .esli
 - [lint-staged.config.js](lint-staged.config.js)
 - [verify-commit-msg.js](verify-commit-msg.js)
 
-#### build
+## build
 
 ```bash
 pnpm build

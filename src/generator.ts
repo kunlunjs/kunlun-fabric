@@ -1,4 +1,3 @@
-import process from 'node:process'
 import { resolve } from 'path'
 import chalk from 'chalk'
 import { existsSync } from 'fs-extra'
@@ -80,14 +79,14 @@ async function run() {
   }
   if (uninstalled.length) {
     const spinner = ora({
-      text: `Installation in progress... ${get('coffee')}\n`,
-      spinner: process.argv[2] as any
+      // text: `Installation in progress... ${get('coffee')}\n`,
+      // spinner: process.argv[2] as any
       // spinner: {
       //   interval: 120,
       //   frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
       // }
     })
-    spinner.start()
+    spinner.start(`Installation in progress... ${get('coffee')}\n`)
     try {
       for (const dep of uninstalled) {
         let command = 'pnpm'
@@ -110,12 +109,12 @@ async function run() {
         // TODO: yarn workspace
         // NOTE: husky 依赖 git
         if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
-          console.log(chalk.gray(`git init\n`))
+          console.log(chalk.gray(`> git init\n`))
           await execPromise(`git init`)
         }
         // 初始化 husky
         if (dep === 'husky' && !existsSync(resolve(cwd, '.husky'))) {
-          console.log(chalk.gray('yes | npx husky install'))
+          console.log(chalk.gray('> yes | npx husky install'))
           await execPromise('yes | npx husky install')
         }
         await execPromise(`${command} ${install} ${dep} -D ${W}`)
@@ -125,8 +124,9 @@ async function run() {
       spinner.fail(
         `Install failed with ${devDependencies.join(
           ', '
-        )}, you may install them yourself`
+        )}, you may install them yourself.`
       )
+      console.error(error)
     }
   }
 }

@@ -57,7 +57,8 @@ const devDependencies = [
   'eslint',
   'husky',
   'prettier',
-  'stylelint'
+  'stylelint',
+  'typescript'
 ]
 
 const uninstalled: string[] = []

@@ -1,4 +1,5 @@
-import { exec } from 'child_process'
+import { exec, execSync } from 'child_process'
+import os from 'os'
 import { resolve } from 'path'
 import chalk from 'chalk'
 import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
@@ -7,6 +8,8 @@ import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
 // import emoji from 'node-emoji'
 import { configFiles } from './configs'
 import { cwd, pkg } from './root'
+
+const isWin32 = os.platform() === 'win32'
 
 type packageFieldName = keyof typeof configFiles
 
@@ -122,4 +125,17 @@ export function execPromise(cmd: string): Promise<string> {
       }
     })
   })
+}
+
+export function cmdExist(cmd: 'yarn' | 'pnpm') {
+  try {
+    execSync(
+      isWin32
+        ? `cmd /c "(help ${cmd} > nul || exit 0) && where ${cmd} > nul 2> nul"`
+        : `command -v ${cmd}`
+    )
+    return true
+  } catch {
+    return false
+  }
 }

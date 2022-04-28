@@ -52,7 +52,7 @@ generateFile('lint-staged.config.js', {
   contentFile: '../lint-staged.config.js'
 })
 generateFile('verify-commit-msg.js', {
-  contentFile: '../dist/verify-commit-msg.js'
+  contentFile: '../verify-commit-msg.js'
 })
 
 const devDependencies = [

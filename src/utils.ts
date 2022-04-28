@@ -1,3 +1,4 @@
+import { exec } from 'child_process'
 import { resolve } from 'path'
 import chalk from 'chalk'
 import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
@@ -114,4 +115,16 @@ export function generateFile(
     }
     writeFileSync(resolve(cwd, output), content)
   }
+}
+
+export function execPromise(cmd: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    exec(cmd, (err, stdout, stderr) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(stdout)
+      }
+    })
+  })
 }

@@ -4,7 +4,7 @@ import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
 // https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
 // ${emoji.get(':white_check_mark:')}
 // import emoji from 'node-emoji'
-import { configs } from './configs'
+import { configFiles } from './configs'
 
 export let cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
 if (cwd === __dirname) {
@@ -12,18 +12,18 @@ if (cwd === __dirname) {
 }
 export const pkg = require(resolve(cwd, 'package.json'))
 
-type PackageConfigName = keyof typeof configs
+type packageFieldName = keyof typeof configFiles
 
 export function isExist(
   config: string[],
-  packageConfigName?: PackageConfigName,
+  packageFieldName?: packageFieldName,
   filePath?: string
 ): boolean {
   let flag = false
-  if (config.length === 0 && !packageConfigName && filePath) {
+  if (config.length === 0 && !packageFieldName && filePath) {
     flag = existsSync(resolve(cwd, filePath))
   }
-  if (packageConfigName && pkg[packageConfigName]) {
+  if (packageFieldName && pkg[packageFieldName]) {
     flag = true
   } else {
     for (const s of config) {
@@ -52,7 +52,7 @@ export function writeFile(file: typeof ignores[number]) {
   }
 }
 
-export function generateConfig(
+export function generateFile(
   filename:
     | 'commit-msg'
     | 'pre-commit'
@@ -66,7 +66,7 @@ export function generateConfig(
     | 'launch.json'
     | 'settings.json',
   {
-    packageConfigName,
+    packageFieldName,
     contentFile,
     exclude,
     output
@@ -74,7 +74,7 @@ export function generateConfig(
     /**
      * 在 package.json 中的 name
      */
-    packageConfigName?: PackageConfigName
+    packageFieldName?: packageFieldName
     /**
      * 内容
      */
@@ -82,7 +82,7 @@ export function generateConfig(
     /**
      * 需要排除的内容
      */
-    exclude?: RegExp[]
+    exclude?: string[]
     /**
      * 输出目录
      */
@@ -91,8 +91,8 @@ export function generateConfig(
 ) {
   output = output || filename
   const isExistFile = isExist(
-    packageConfigName ? configs[packageConfigName] : [],
-    packageConfigName,
+    packageFieldName ? configFiles[packageFieldName] : [],
+    packageFieldName,
     output
   )
   if (!isExistFile) {

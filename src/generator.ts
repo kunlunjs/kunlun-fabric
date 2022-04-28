@@ -1,50 +1,52 @@
 import { execSync } from 'child_process'
+import process from 'node:process'
 import { resolve } from 'path'
+import chalk from 'chalk'
 import { existsSync } from 'fs-extra'
 import { get } from 'node-emoji'
 import ora from 'ora'
-import { cwd, generateConfig, ignores, writeFile } from './utils'
+import { cwd, generateFile, ignores, writeFile } from './utils'
 
-generateConfig('commit-msg', {
+generateFile('commit-msg', {
   contentFile: '../.husky/commit-msg',
   output: '.husky/commit-msg'
 })
-generateConfig('pre-commit', {
+generateFile('pre-commit', {
   contentFile: '../.husky/pre-commit',
   output: '.husky/pre-commit'
 })
-generateConfig('prepare-commit-msg', {
+generateFile('prepare-commit-msg', {
   contentFile: '../.husky/prepare-commit-msg',
   output: '.husky/prepare-commit-msg'
 })
-generateConfig('extensions.json', {
+generateFile('extensions.json', {
   contentFile: '../.vscode/extensions.json',
   output: '.vscode/extensions.json'
 })
-generateConfig('settings.json', {
+generateFile('settings.json', {
   contentFile: '../.vscode/settings.json',
   output: '.vscode/settings.json'
 })
 
 ignores.forEach(writeFile)
 
-generateConfig('.eslintrc.js', {
-  packageConfigName: 'eslintConfig',
+generateFile('.eslintrc.js', {
+  packageFieldName: 'eslintConfig',
   contentFile: '../generate/eslintrc'
 })
-generateConfig('prettier.config.js', {
-  packageConfigName: 'prettier',
+generateFile('prettier.config.js', {
+  packageFieldName: 'prettier',
   contentFile: '../generate/prettier'
 })
-generateConfig('stylelint.config.js', {
-  packageConfigName: 'stylelint',
+generateFile('stylelint.config.js', {
+  packageFieldName: 'stylelint',
   contentFile: '../generate/stylelint'
 })
-generateConfig('lint-staged.config.js', {
-  packageConfigName: 'lint-staged',
+generateFile('lint-staged.config.js', {
+  packageFieldName: 'lint-staged',
   contentFile: '../lint-staged.config.js'
 })
-generateConfig('verify-commit-msg.js', {
+generateFile('verify-commit-msg.js', {
   contentFile: '../dist/verify-commit-msg.js'
 })
 
@@ -60,8 +62,7 @@ const devDependencies = [
 
 const uninstalled: string[] = []
 for (const dep of devDependencies) {
-  // const cdep = resolve(cwd, dep)
-  // TODO: 避免重复安装依赖
+  // NOTE: 避免重复安装依赖
   // require(cdep)
   // require.resolve(dep.split('@types/').filter(Boolean)[0], {
   //   paths: [resolve(cwd, 'node_modules'), resolve(cwd, 'node_modules/@types')]
@@ -72,11 +73,12 @@ for (const dep of devDependencies) {
 }
 if (uninstalled.length) {
   const spinner = ora({
-    text: `Installation in progress... ${get('coffee')}`,
-    spinner: {
-      interval: 120,
-      frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
-    }
+    text: `Installation in progress... ${get('coffee')}\n`,
+    spinner: process.argv[2] as any
+    // spinner: {
+    //   interval: 120,
+    //   frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
+    // }
   })
   spinner.start()
   for (const dep of uninstalled) {
@@ -95,7 +97,19 @@ if (uninstalled.length) {
       W = '-W'
     }
     // TODO: yarn workspace
+    // NOTE: husky 依赖 git
+    if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
+      console.log(chalk.gray(`git init\n`))
+      execSync(`git init`)
+    }
+    // 初始化 husky
+    if (dep === 'husky' && !existsSync(resolve(cwd, '.husky'))) {
+      console.log(chalk.gray('yes | npx husky install'))
+      execSync('yes | npx husky install')
+    }
     execSync(`${command} ${install} ${dep} -D ${W}`)
   }
-  spinner.succeed(`Installed ${devDependencies.join(', ')}`)
+  setTimeout(() => {
+    spinner.succeed(`Installed ${devDependencies.join(', ')}`)
+  }, 3000)
 }

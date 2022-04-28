@@ -1,4 +1,4 @@
-export const configs = {
+export const configFiles = {
   // https://github.com/okonet/lint-staged#configuration
   'lint-staged': [
     '.lintstagedrc.json',

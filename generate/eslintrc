@@ -1,4 +1,3 @@
-// @ts-check
 /**
  * @type {import('eslint').Linter.Config}
  * @see https://github.com/turing-fe/kunlun-fabric/blob/main/src/eslint.ts

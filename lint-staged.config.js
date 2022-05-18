@@ -6,6 +6,6 @@ module.exports = {
   ],
   '*.{css,less,sass,scss,styl}': [
     // https://stylelint.io/user-guide/usage/cli
-    'stylelint --config ./stylelint.config.js -i ./.stylelintignore  **/*.{css,less,sass,scss,styl} --fix'
+    'stylelint --config ./stylelint.config.js --allow-empty-input -i ./.stylelintignore  **/*.{css,less,sass,scss,styl} --fix'
   ]
 }

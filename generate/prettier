@@ -1,7 +1,6 @@
 // @ts-nocheck
 const prettierConfig = require('@kunlunjs/fabric/dist/prettier')
 
-// @ts-check
 /**
  * @type {import('prettier').Config}
  * @see https://github.com/turing-fe/kunlun-fabric/blob/main/src/prettier.ts

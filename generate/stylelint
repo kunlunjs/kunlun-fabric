@@ -1,4 +1,3 @@
-// @ts-check
 /**
  * @type {import('stylelint').Config}
  * @see https://github.com/turing-fe/kunlun-fabric/blob/main/src/stylelint.ts

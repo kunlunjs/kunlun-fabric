@@ -40,6 +40,10 @@ eslint 和 prettier 可能会默认不检查 . 命名开头的文件，如 .esli
 
 ## Development
 
+在本项目外任意目录内
+1. `npm init -y`
+2. `ts-node <path>/kunlun-fabric/src/generator.ts` 执行 generator 查看是否生成相应配置文件
+
 <b>默认配置规则如下</b>
 
 - [.husky/commit-msg](.husky/commit-msg)

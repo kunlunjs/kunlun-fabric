@@ -4,7 +4,6 @@ import { resolve } from 'path'
 import chalk from 'chalk'
 import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
 // https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
-// ${emoji.get(':white_check_mark:')}
 // import emoji from 'node-emoji'
 import { configFiles } from './configs'
 import { cwd, pkg } from './root'

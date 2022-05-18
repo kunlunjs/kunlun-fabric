@@ -1,11 +1,8 @@
-import { resolve } from 'path'
 import chalk from 'chalk'
 import { sync } from 'command-exists'
-import { existsSync } from 'fs-extra'
 import { get } from 'node-emoji'
-import ora from 'ora'
-import { cwd, pkg } from './root'
-import { execPromise, generateFile, ignores, writeFile } from './utils'
+import { pkg } from './root'
+import { generateFile, ignores, writeFile } from './utils'
 
 generateFile('commit-msg', {
   contentFile: '../.husky/commit-msg',
@@ -79,70 +76,70 @@ async function run() {
     }
   }
   if (uninstalled.length) {
-    // TODO: 自动安装相关依赖
-    const spinner = ora({
-      // text: `Installation in progress... ${get('coffee')}\n`
-      // spinner: process.argv[2] as any
-      // spinner: {
-      //   interval: 120,
-      //   frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
-      // }
-    })
-    spinner.start(`Installation in progress... ${get('coffee')}\n`)
-    try {
-      for (const dep of uninstalled) {
-        // NOTE: husky 依赖 git
-        if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
-          console.log(chalk.gray(`> git init\n`))
-          await execPromise(`git init`)
-          console.log(chalk.gray('> yes | npx husky install'))
-          await execPromise('yes | npx husky install')
-        }
-        // 初始化 husky
-        // if (dep === 'husky' && !existsSync(resolve(cwd, '.husky'))) {
-        //   console.log(chalk.gray('> yes | npx husky install'))
-        //   await execPromise('yes | npx husky install')
-        // }
-      }
-      const deps = uninstalled.join(' ')
-      const pnpmWorkspace = existsSync(resolve(cwd, 'pnpm-workspace.yaml'))
-      let command = 'npm'
-      if (sync('pnpm')) {
-        command = 'pnpm'
-      }
-      let install = 'i'
-      // const pnpmLock = existsSync(resolve(cwd, 'pnpm-lock.yaml'))
-      // const yarnLock = existsSync(resolve(cwd, 'yarn.lock'))
-      // const packageLock = existsSync(resolve(cwd, 'package-json.lock'))
-      if (sync('yarn') && !sync('pnpm')) {
-        command = 'yarn'
-        install = 'add'
-      }
-      // 是否 pnpm monorepo
-      let W = ''
-      if (pnpmWorkspace) {
-        W = '-W'
-      }
-      await execPromise(`cd ${cwd} && ${command} ${install} ${deps} -D ${W}`)
-      spinner.succeed(`Installed ${devDependencies.join(', ')}`)
-      process.exit(1)
-    } catch (error) {
-      spinner.fail(
-        `Install failed with ${devDependencies.join(
-          ', '
-        )}, you may install them yourself.`
-      )
-      console.error(error)
-      process.exit(1)
+    let command = 'npm'
+    if (sync('pnpm')) {
+      command = 'pnpm'
     }
+    // let install = 'i'
+    // const pnpmLock = existsSync(resolve(cwd, 'pnpm-lock.yaml'))
+    // const yarnLock = existsSync(resolve(cwd, 'yarn.lock'))
+    // const packageLock = existsSync(resolve(cwd, 'package-json.lock'))
+    if (sync('yarn') && !sync('pnpm')) {
+      command = 'yarn'
+      // install = 'add'
+    }
+    // TODO: 自动安装相关依赖
+    // const spinner = ora({
+    //   // text: `Installation in progress... ${get('coffee')}\n`
+    //   // spinner: process.argv[2] as any
+    //   // spinner: {
+    //   //   interval: 120,
+    //   //   frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸']
+    //   // }
+    // })
+    // spinner.start(`Installation in progress... ${get('coffee')}\n`)
+    // try {
+    //   for (const dep of uninstalled) {
+    //     // NOTE: husky 依赖 git
+    //     if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
+    //       console.log(chalk.gray(`> git init\n`))
+    //       await execPromise(`git init`)
+    //       console.log(chalk.gray('> yes | npx husky install'))
+    //       await execPromise('yes | npx husky install')
+    //     }
+    //     // 初始化 husky
+    //     // if (dep === 'husky' && !existsSync(resolve(cwd, '.husky'))) {
+    //     //   console.log(chalk.gray('> yes | npx husky install'))
+    //     //   await execPromise('yes | npx husky install')
+    //     // }
+    //   }
+    //   const deps = uninstalled.join(' ')
+    //   const pnpmWorkspace = existsSync(resolve(cwd, 'pnpm-workspace.yaml'))
+    //   // 是否 pnpm monorepo
+    //   let W = ''
+    //   if (pnpmWorkspace) {
+    //     W = '-W'
+    //   }
+    //   await execPromise(`cd ${cwd} && ${command} ${install} ${deps} -D ${W}`)
+    //   spinner.succeed(`Installed ${devDependencies.join(', ')}`)
+    //   process.exit(1)
+    // } catch (error) {
+    //   spinner.fail(
+    //     `Install failed with ${devDependencies.join(
+    //       ', '
+    //     )}, you may install them yourself.`
+    //   )
+    //   console.error(error)
+    //   process.exit(1)
+    // }
 
-    // console.log(
-    //   `${get('point_right')} ${chalk.yellowBright(
-    //     `Execute command "${command} i ${uninstalled.join(
-    //       ' '
-    //     )} -D" to install devDependencies`
-    //   )}`
-    // )
+    console.log(
+      `${get('point_right')} ${chalk.yellowBright(
+        `Execute command "${command} i ${uninstalled.join(
+          ' '
+        )} -D" to install devDependencies`
+      )}`
+    )
   }
 }
 

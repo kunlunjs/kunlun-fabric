@@ -102,7 +102,7 @@ export function generateFile(
         mkdirpSync(dirname)
       }
     }
-    console.log(chalk.green(`√ ${chalk.gray(filename)}`))
+    console.log(chalk.green(`√ ${chalk.gray(output)}`))
     let content = readFileSync(resolve(__dirname, contentFile)).toString()
     if (exclude) {
       content = content

@@ -1,12 +1,8 @@
-const { resolve } = require('path')
-const { existsSync } = require('fs-extra')
+const { cwd } = require('./root')
+const chalk = require('chalk')
 
-let cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
-if (cwd === __dirname) {
-  cwd = process.cwd()
-}
-const generate = resolve(__dirname, '../dist/generator.js')
-if (!cwd.endsWith('/kunlun-fabric') && existsSync(generate)) {
+console.log(chalk.gray(`$PWD: ${cwd}`))
+if (!cwd.endsWith('/kunlun-fabric')) {
   // @ts-ignore
-  require(generate)
+  require('./generator')
 }

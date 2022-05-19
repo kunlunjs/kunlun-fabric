@@ -25,7 +25,7 @@ module.exports = defineConfig({
       parser: '@typescript-eslint/parser',
       settings: {
         'react': {
-          version: 'detect'
+          // version: 'detect'
         },
         'import/ignore': ['node_modules', '\\.(css|md|svg|json)$'],
         'import/parsers': {

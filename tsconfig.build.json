@@ -5,7 +5,7 @@
   "compilerOptions": {
     "declaration": true,
     "noEmit": false,
-    "checkJs": false,
+    "checkJs": true,
     "target": "ES5",
     "outDir": "dist"
   }

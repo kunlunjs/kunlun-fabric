@@ -107,8 +107,7 @@
     "husky": "latest",
     "lint-staged": "latest",
     "prettier": "latest",
-    "stylelint": "latest",
-    "typescript": "latest"
+    "stylelint": "latest"
   },
   "peerDependenciesMeta": {
     "@types/eslint": {
@@ -134,9 +133,6 @@
     },
     "stylelint": {
       "optional": true
-    },
-    "typescript": {
-      "optional": true
     }
   },
   "pnpm": {
@@ -147,16 +143,14 @@
         "@types/prettier",
         "husky",
         "lint-staged",
-        "stylelint",
-        "typescript"
+        "stylelint"
       ],
       "allowedVersions": {
         "eslint": "8",
         "husky": "8",
         "lint-staged": "12",
         "prettier": "2",
-        "stylelint": "14",
-        "typescript": "4"
+        "stylelint": "14"
       }
     }
   }

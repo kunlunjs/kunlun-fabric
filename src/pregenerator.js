@@ -1,16 +1,12 @@
 const { resolve } = require('path')
-const { existsSync, realpathSync } = require('fs-extra')
+const { existsSync } = require('fs-extra')
 
-const cwd = realpathSync(process.cwd())
-console.log(
-  'process.cwd(): ',
-  cwd,
-  existsSync(resolve(__dirname, '../dist/generator.js'))
-)
-if (
-  !cwd.endsWith('/kunlun-fabric') &&
-  existsSync(resolve(__dirname, '../dist/generator.js'))
-) {
+let cwd = process.env.INIT_CWD || resolve('../../../..', __dirname)
+if (cwd === __dirname) {
+  cwd = process.cwd()
+}
+const generate = resolve(__dirname, '../dist/generator.js')
+if (!cwd.endsWith('/kunlun-fabric') && existsSync(generate)) {
   // @ts-ignore
-  require('../dist/generator.js')
+  require(generate)
 }

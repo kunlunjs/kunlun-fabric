@@ -25,7 +25,7 @@
     "prepare": "husky install",
     "build": "tsc -p tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cross-env-shell INIT_CWD=\"$PWD\" node src/pregenerator.js",
+    "postinstall": "node dist/pregenerator.js",
     "prerelease": "npm run build",
     "release": "release-it"
   },
@@ -54,7 +54,6 @@
     "@typescript-eslint/parser": "^5.25.0",
     "chalk": "4.1.2",
     "command-exists": "^1.2.9",
-    "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-define-config": "^1.4.1",

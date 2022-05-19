@@ -1,6 +1,6 @@
 {
   "name": "@kunlunjs/fabric",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "ESLint/Prettier/StyleLint configuration for Kunlun projects",
   "publishConfig": {
     "access": "public"

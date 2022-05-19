@@ -1,7 +1,7 @@
 {
   "name": "@kunlunjs/fabric",
   "version": "0.2.12",
-  "description": "ESLint/Prettier/StyleLint configuration for Kunlun projects",
+  "description": "ESLint/Prettier/StyleLint/Husky/lint-staged/git commit message verify configuration for Kunlun projects",
   "publishConfig": {
     "access": "public"
   },
@@ -150,7 +150,14 @@
         "stylelint",
         "typescript"
       ],
-      "allowedVersions": {}
+      "allowedVersions": {
+        "eslint": "8",
+        "husky": "8",
+        "lint-staged": "12",
+        "prettier": "2",
+        "stylelint": "14",
+        "typescript": "4"
+      }
     }
   }
 }

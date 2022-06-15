@@ -5,7 +5,7 @@ let cwd = process.env.INIT_CWD
 // if (!cwd && process.cwd() === resolve(__dirname, '..')) {
 //   cwd = resolve(__dirname, '../../../..')
 // }
-if (process.env.PWD.endsWith('@kunlunjs/fabric')) {
+if (process.env.PWD && process.env.PWD.endsWith('@kunlunjs/fabric')) {
   cwd = resolve(__dirname, '../../..')
 }
 // 在 kunlun-fabric 中

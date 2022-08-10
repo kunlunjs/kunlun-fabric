@@ -1,5 +1,4 @@
 // Invoked on the commit-msg git hook
-
 const { readFileSync } = require('fs')
 const chalk = require('chalk')
 
@@ -9,23 +8,25 @@ const msg = readFileSync(msgPath, 'utf-8').trim()
 
 const releaseRE = /^v\d/
 const pre = [
-  'ci', // CI/CD Travis、Jenkins、GitLab CI、Circle等
-  'dx', // dx
-  'wip', // 开发
-  'fix', // 问题修复
-  'feat', // 功能
-  'docs', // 文档
-  'deps', // 依赖
-  'perf', // 性能
-  'test', // 测试
-  'build', // 构建
-  'chore', // 日常事务
-  'types', // 类型声明
-  'style', // 格式化
-  'sample', // 案例
-  'release', // 发布 npm package
-  'refactor', // 重构
-  'workflow' // github workflow
+  'add', // add something
+  'remove', // remove something
+  'ci', // updates to the continous integration system
+  'fix', // a bug fix
+  'feat', // a new feature
+  'docs', // documentation only changes
+  'perf', // a code change that improves performance
+  'test', // adding missing or correcting existing tests
+  'build', // changes related to build processes
+  'config', // changing configuration files
+  'chore', // changes to the build process or auxiliary tools and libraries such as documentation generation
+  'chore-release', // code deployment or publishing to external repositories
+  'chore-deps', // add or delete dependencies
+  'i18n', // internationalization and localization
+  'style', // changes that do not affect the meaning of code (white-space, formatting, missing semi-colors, etc)
+  'breaking', // introducing breaking changes
+  'release', // code deployment or publishing to external repositories
+  'refactor', // a code change that neither fixes a bug nor adds a feature
+  'security' // fixing security issues
 ]
 const commitRE = new RegExp(
   `^(revert: )?(${pre.join('|')})(\\(.+\\))?: .{1,50}`
@@ -43,7 +44,7 @@ if (!releaseRE.test(msg) && !commitRE.test(msg)) {
       `    ${chalk.green(`feat: add 'comments' option`)}\n` +
       `    ${chalk.green(`fix: handle events on blur (close #28)`)}\n\n` +
       chalk.red(
-        `  See https://github.com/turing-fe/kunlun-fabric/blob/main/src/verify-commit-msg.ts for more details.\n`
+        `  See https://github.com/kunlunjs/kunlun-fabric/blob/main/src/verify-commit-msg.ts for more details.\n`
       )
   )
   process.exit(1)

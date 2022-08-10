@@ -19,7 +19,7 @@
     "verify-commit-msg.js"
   ],
   "engines": {
-    "node": ">=16.14.0"
+    "node": ">=12"
   },
   "scripts": {
     "prepare": "husky install",
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turing-fe/kunlun-fabric.git"
+    "url": "git+https://github.com/kunlunjs/kunlun-fabric.git"
   },
   "keywords": [
     "git",
@@ -45,9 +45,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/turing-fe/kunlun-fabric/issues"
+    "url": "https://github.com/kunlunjs/kunlun-fabric/issues"
   },
-  "homepage": "https://github.com/turing-fe/kunlun-fabric#readme",
+  "homepage": "https://github.com/kunlunjs/kunlun-fabric#readme",
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1.3",
     "@typescript-eslint/eslint-plugin": "^5.28.0",

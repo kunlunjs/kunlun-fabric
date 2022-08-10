@@ -17,14 +17,14 @@ const pre = [
   'perf', // a code change that improves performance
   'test', // adding missing or correcting existing tests
   'build', // changes related to build processes
-  'config', // changing configuration files
   'chore', // changes to the build process or auxiliary tools and libraries such as documentation generation
+  'config', // changing configuration files
   'chore-release', // code deployment or publishing to external repositories
   'chore-deps', // add or delete dependencies
   'i18n', // internationalization and localization
   'style', // changes that do not affect the meaning of code (white-space, formatting, missing semi-colors, etc)
-  'breaking', // introducing breaking changes
   'release', // code deployment or publishing to external repositories
+  'breaking', // introducing breaking changes
   'refactor', // a code change that neither fixes a bug nor adds a feature
   'security' // fixing security issues
 ]

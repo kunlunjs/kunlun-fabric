@@ -1,11 +1,12 @@
 // Invoked on the commit-msg git hook
+console.log(2)
 const { readFileSync } = require('fs')
 const chalk = require('chalk')
-
-// process.argv: [ts-node, verify-commit-msg.ts, .git/COMMIT_EDITMSG]
+console.log(4)
+// process.argv: [node, verify-commit-msg.js, .git/COMMIT_EDITMSG]
 const msgPath = process.argv[2]
 const msg = readFileSync(msgPath, 'utf-8').trim()
-
+console.log(8)
 const releaseRE = /^v\d/
 const pre = [
   'add', // add something
@@ -19,8 +20,8 @@ const pre = [
   'build', // changes related to build processes
   'chore', // changes to the build process or auxiliary tools and libraries such as documentation generation
   'config', // changing configuration files
-  'chore-release', // code deployment or publishing to external repositories
   'chore-deps', // add or delete dependencies
+  'chore-release', // code deployment or publishing to external repositories
   'i18n', // internationalization and localization
   'style', // changes that do not affect the meaning of code (white-space, formatting, missing semi-colors, etc)
   'release', // code deployment or publishing to external repositories
@@ -31,7 +32,7 @@ const pre = [
 const commitRE = new RegExp(
   `^(revert: )?(${pre.join('|')})(\\(.+\\))?: .{1,50}`
 )
-
+console.log(34)
 if (!releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log()
   console.error(

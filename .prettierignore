@@ -1,16 +1,28 @@
+# Git
 .husky
-*.md
 .gitignore
+
+# GitHub
 .github
-.DS_Store
-.gitignore
+
+# Syntax Format
 .editorconfig
 .eslintignore
 .prettierignore
 .stylelintignore
-*.lock
-*.yml
+
+.DS_Store
+
+# markdown mdx
+*.md
+*.mdx
+
+package-lock.json
+yarn.lock
+
 *.yaml
+*.yml
+
 LICENSE
 
 dist

@@ -1,12 +1,11 @@
 // Invoked on the commit-msg git hook
-console.log(2)
 const { readFileSync } = require('fs')
 const chalk = require('chalk')
-console.log(4)
+
 // process.argv: [node, verify-commit-msg.js, .git/COMMIT_EDITMSG]
 const msgPath = process.argv[2]
 const msg = readFileSync(msgPath, 'utf-8').trim()
-console.log(8)
+
 const releaseRE = /^v\d/
 const pre = [
   'add', // add something
@@ -32,7 +31,7 @@ const pre = [
 const commitRE = new RegExp(
   `^(revert: )?(${pre.join('|')})(\\(.+\\))?: .{1,50}`
 )
-console.log(34)
+
 if (!releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log()
   console.error(

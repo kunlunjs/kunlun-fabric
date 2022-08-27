@@ -120,6 +120,9 @@
     "@types/prettier": {
       "optional": true
     },
+    "devmoji": {
+      "optional": false
+    },
     "eslint": {
       "optional": false
     },
@@ -142,6 +145,7 @@
         "@types/eslint",
         "@types/node",
         "@types/prettier",
+        "devmoji",
         "husky",
         "lint-staged",
         "stylelint"

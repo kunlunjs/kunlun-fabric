@@ -1,36 +1,37 @@
 # @kunlunjs/fabric
 
-项目基础配置，包括 ESLint、Prettier、StyleLint、Husky、lint-staged、git commit message verify 等。
+Project basic configurations include ESLint, Prettier, StyleLint, Husky, lint-staged, and Git Commit message Verify.
 
 ## Installation
 
 ```bash
 pnpm i @kunlunjs/fabric -D
+# Where "@types/prettier" "@types/eslint" "stylelint" is optional
+pnpm i @types/prettier prettier @types/eslint eslint stylelint devmoji husky lint-staged @types/node typescript -D
 ```
 
 ## Usage
 
-在项目根目录将会自动生成如下文件，其中 ESLint/Prettier/StyleLint 判断依据是是否包含[这些文件](./src/configs.ts)，
-自动安装如下依赖 @types/prettier @types/eslint、eslint、prettier、stylelint、husky、lint-staged、typescript，
-由于 husky 的初始化需要依赖 git，所以会先判断 .git 是否存在，如不存在会先使用 `git init` 初始化 git 环境。
+In the project root directory will be automatically generate the following documents, including [ESLint](https://eslint.org/)/[Prettier](https://prettier.io/)/[StyleLint](https://stylelint.io/) judgment is whether to include [these files](./src/configs.ts),
+Since [Husky](https://typicode.github.io/husky/#/)'s initialization depends on Git, it determines whether.git exists. If it doesn't, it initialses the git environment with 'git init' and then adds' prepare 'to package.json scripts: "husky install"`.
 
-- [verify-commit-msg.js]("./dist/verify-commit-msg.js") 检查 git commit message 格式是否满足要求
-- [.husky/commit-msg]("./.husky/commit-msg") 触发执行 verify-commit-msg
-- [.husky/pre-commit]("./.husky/pre-commit") 触发 lint-staged
-- [.husky/prepare-commit-msg]("./.husky/prepare-commit-msg") 触发为 git commit message 增加图标前缀
-- [.vscode/extensions.json]("./.vscode/extensions.json") 推荐 VSCode 插件
-- [.vscode/settings.json]("./.vscode/settings.json") 推荐 VSCode 配置
-- [lint-staged.config.js]("./lint-staged.config.js") 提交文件
-- [.eslintrc.js]("./generate/eslintrc") JS/TS 语法检查
-- [.eslintignore]("./.eslintignore") JS/TS 语法检查忽略文件
-- [prettier.config.js]("./generate/prettier") 格式化
-- [.prettierignore]("./.prettierignore") 格式化忽略文件
-- [stylelint.config.js]("./generate/stylelint") 样式检查
-- [.stylelintignore]("./.stylelintignore") 样式检查忽略文件
+- [.husky/commit-msg]("./.husky/commit-msg") Trigger git "commit-msg" hook.
+- [.husky/pre-commit]("./.husky/pre-commit") Trigger git "pre-commit" hook.
+- [.husky/prepare-commit-msg]("./.husky/prepare-commit-msg") Trigger git "prepare-commit-msg" hook.
+- [.vscode/extensions.json]("./.vscode/extensions.json") Recommended VSCode extensions.
+- [.vscode/settings.json]("./.vscode/settings.json") Recommended VSCode configuration.
+- [lint-staged.config.js]("./lint-staged.config.js") [lint-staged](https://github.com/okonet/lint-staged) configuration file - Run linters on git staged files.
+- [.eslintrc.js]("./generate/eslintrc") [ESLint](https://eslint.org/) configuration file - Find and fix problems in your JavaScript code.
+- [.eslintignore]("./.eslintignore") [ESLint](https://eslint.org/) ignore files configuration.
+- [prettier.config.js]("./generate/prettier") [Prettier](https://prettier.io/) configuration file - An opinionated code formatter.
+- [.prettierignore]("./.prettierignore") [Prettier](https://prettier.io/) ignore files configuration.
+- [stylelint.config.js]("./generate/stylelint") [StyleLint](https://stylelint.io/) configuration file - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
+- [.stylelintignore]("./.stylelintignore") [StyleLint](https://stylelint.io/) ignore files configuration.
+- [verify-commit-msg.js]("./dist/verify-commit-msg.js") Check whether the Git Commit Message format meets requirements.
 
 ## Attention
 
-eslint 和 prettier 可能会默认不检查 . 命名开头的文件，如 .eslintrc.js、.prettierrc.js 等，需要在 .eslintignore 和 .prettierignore 中加入强制开启检查
+ESLint and Prettier may not check files that start with. eslintrc.js or ".prettier.js" by default. You need to run the ".eslintignore" and ".prettierignore "for mandatory checking.
 
 ```
 !.eslintrc.js
@@ -40,27 +41,31 @@ eslint 和 prettier 可能会默认不检查 . 命名开头的文件，如 .esli
 
 ## Development
 
-在本项目外任意目录内
-1. `npm init -y`
-2. `ts-node <path>/kunlun-fabric/src/generator.ts` 执行 generator 查看是否生成相应配置文件
+Create a new project and go to the root directory
+1. `mkdir <dirname> && cd <dirname>`
+Inside the project root directory
+2. `npm init -y`
+Run the command to check whether the following configuration file is generated
+3. `ts-node <path>/kunlun-fabric/src/generator.ts`
 
-<b>默认配置规则如下</b>
+<b>The default configuration rules are as follows</b>
 
 - [.husky/commit-msg](.husky/commit-msg)
 - [.husky/pre-commit](.husky/pre-commit)
 - [.husky/prepare-commit-msg](.husky/prepare-commit-msg)
 - [.vscode/extensions.json](.vscode/extensions.json)
 - [.vscode/settings.json](.vscode/settings.json)
-- [eslint](src/eslint.ts)
+- [.eslintrc.js](src/eslint.ts)
+- [.editorconfig](.editorconfig)
 - [.eslintignore](.eslintignore)
-- [prettier](src/prettier.ts)
 - [.prettierignore](.prettierignore)
-- [stylelint](src/stylelint.ts)
 - [.stylelintignore](.stylelintignore)
 - [lint-staged.config.js](lint-staged.config.js)
+- [prettier.config.js](src/prettier.ts)
+- [stylelint.config.js](src/stylelint.ts)
 - [verify-commit-msg.js](verify-commit-msg.js)
 
-## build
+## Build
 
 ```bash
 pnpm build

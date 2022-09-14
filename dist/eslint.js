@@ -135,6 +135,7 @@ var eslintConfig = {
                 '@typescript-eslint/explicit-function-return-type': ['off'],
                 '@typescript-eslint/explicit-module-boundary-types': ['off'],
                 '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+                // TODO
                 'jest/no-deprecated-functions': ['off'],
                 // 使用 prettier 格式化规则
                 'prettier/prettier': ['error', {}, { usePrettierrc: true }]

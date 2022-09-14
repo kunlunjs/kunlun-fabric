@@ -41,7 +41,9 @@ module.exports = defineConfig({
         },
         'eslint-import-resolver-typescript': {
           alwaysTryTypes: true
-        }
+        },
+        'mdx/code-block': true,
+        'mdx/language-mapper': {}
       },
       env: {
         es2021: true,
@@ -58,6 +60,7 @@ module.exports = defineConfig({
         'plugin:jest/recommended',
         'plugin:jest-dom/recommended',
         'plugin:testing-library/react',
+        'plugin:mdx/recommended',
         'plugin:prettier/recommended'
       ],
       plugins: ['import', 'unused-imports', 'tailwindcss'],
@@ -131,7 +134,7 @@ module.exports = defineConfig({
         // '@typescript-eslint/triple-slash-reference': ['off'],
         '@typescript-eslint/explicit-function-return-type': ['off'],
         '@typescript-eslint/explicit-module-boundary-types': ['off'],
-
+        //
         'jest/no-deprecated-functions': ['off'],
         // 使用 prettier 格式化规则
         'prettier/prettier': ['error', {}, { usePrettierrc: true }]

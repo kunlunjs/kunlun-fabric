@@ -1,13 +1,16 @@
 import type { Config } from 'stylelint'
 
-const stylelintConfig: Config = {
+const defineStylelintConfig = (syntax: 'less' | 'sass' = 'less'): Config => ({
   extends: [
-    'stylelint-config-standard',
+    syntax === 'less'
+      ? 'stylelint-config-standard'
+      : 'stylelint-config-standard-scss',
     'stylelint-config-css-modules',
     'stylelint-config-rational-order',
     'stylelint-no-unsupported-browser-features',
     'stylelint-config-prettier'
   ],
+  plugins: ['stylelint-declaration-block-no-ignored-properties'],
   customSyntax: 'postcss-less',
   rules: {
     'block-no-empty': null,
@@ -15,8 +18,7 @@ const stylelintConfig: Config = {
     'at-rule-no-unknown': null,
     'selector-class-pattern': null,
     'no-descending-specificity': null
-  },
-  plugins: ['stylelint-declaration-block-no-ignored-properties']
-}
+  }
+})
 
-module.exports = stylelintConfig
+module.exports = defineStylelintConfig

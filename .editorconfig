@@ -1,15 +1,31 @@
 # http://editorconfig.org
+# https://editorconfig-specification.readthedocs.io/en/latest/
+
 root = true
 
 [*]
 indent_style = space
 indent_size = 2
 charset = utf-8
-trim_trailing_whitespace = true
 insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{html,css,scss,json,yml,tpl,js,jsx}]
+indent_size = 2
+indent_style = space
 
 [*.md]
-trim_trailing_whitespace = false
+tab_width = 4
+indent_size = 4
+indent_style = space
 
-[*.sh]
-end_of_line = lf
+[*.{py,ini,sh}]
+indent_size = 4
+indent_style = space
+
+[*.rst]
+indent_size = 3
+indent_style = space
+
+[Makefile]
+indent_style = tab

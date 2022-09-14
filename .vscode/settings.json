@@ -9,6 +9,7 @@
   },
   "css.validate": false,
   "less.validate": false,
+  "scss.validate": false,
   // "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "todo-tree.filtering.excludeGlobs": ["**/node_modules", "*.xml", "*.XML"],
   "todo-tree.filtering.ignoreGitSubmodules": true,

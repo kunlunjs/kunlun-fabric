@@ -1,0 +1,75 @@
+{
+  // "include": [],
+  // "exclude": ["node_modules"],
+  "compilerOptions": {
+    /* Type Checking */
+    "allowUnreachableCode": false, // undefined|true|false
+    "allowUnusedLabels": true, // undefined|true|false
+    "strict": true,
+    "strictPropertyInitialization": false,
+
+    /* Modules */
+    "allowUmdGlobalAccess": true,
+    "baseUrl": ".",
+    "module": "commonjs", // Related: moduleResolution
+    "moduleResolution": "node", // Related: module
+    // "noResolve": undefined,
+    // "paths": {},
+    "resolveJsonModule": true,
+    // "rootDir": "",
+    // "rootDirs": [],
+    // "typeRoots": [], // Related: types
+    // "types": [], // Related: typeRoots
+
+    /* Emit */
+    "declaration": true, // Related: declarationDir emitDeclarationOnly
+    "emitDeclarationOnly": false, // Only emit .d.ts files; do not emit .js files. Related: declaration
+    // "mapRoot": "",
+    // "newLine": "", // CRLF|LF
+    // "noEmit": false, // Do not emit compiler output files like JavaScript source code, source-maps or declarations.
+    // "outDir": undefined, // Related: out
+    // "outFile": undefined, // Related: out
+    // "removeComments": false,
+    "sourceMap": true,
+    // "sourceRoot": undefined,
+
+    /* JavaScript Support */
+    "allowJs": true, // Related: checkJs emitDeclarationOnly
+    // "checkJs": false, // Related: allowJs emitDeclarationOnly
+
+    /* Editor Support */
+    // "plugins": [], // ts-sql-plugin typescript-styled-plugin typescript-eslint-language-service ts-graphql-plugin
+
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true, // Related: esModuleInterop
+    "esModuleInterop": true, // Related: allowSyntheticDefault
+    // "forceConsistentCasingInFileNames": undefined,
+    "isolatedModules": true,
+    // "preserveSymlinks": undefined,
+
+    /* Backwards Compatibility */
+
+    /* Language and Environment */
+    "emitDecoratorMetadata": true, // Related: experimentalDecorators
+    "experimentalDecorators": true, // Related: emitDecoratorMetadata
+    "jsx": "react-jsx", // @see react|react-jsx|react-jsxdev|preserve|react-native
+    "target": "ESNext", // @default "ES3" es5 es6/ES2015 ES2017 ES2018 ES2019 ES2020 ES2021 ES2022 ESNext
+    // "useDefineForClassFields": true,
+
+    /* Compiler Diagnostics */
+
+    /* Projects */
+    // "composite": true, // Related: incremental tsBuildInfoFile
+    // "incremental": true, // Related: composite tsBuildInfoFile
+
+    /* Output Formatting */
+
+    /* Completeness */
+    // "skipDefaultLibCheck": undefined,
+    "skipLibCheck": true
+
+    /* Command Line*/
+
+    /* Watch Options */
+  }
+}

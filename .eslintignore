@@ -22,7 +22,16 @@ yarn.lock
 
 *.yaml
 *.yml
+.stackblitzrc
 
 LICENSE
 
+__fixtures__
+__mocks__
+
+node_modules
+.yarn
+.history
+build
+coverage
 dist

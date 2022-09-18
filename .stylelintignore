@@ -1,24 +1,16 @@
+# Stylelint runs on everything by default; we only lint CSS files.
+*
+!*/
+!*.css
+!*.less
+!*.scss
+__tests__/
 .husky
 .github
 .vscode
+build
+dist
+coverage
 
 # minifier css
 **/*.min.css
-
-**/*.graphql
-
-# JavaScript/TypeScript
-**/*.js
-**/*.jsx
-**/*.ts
-**/*.tsx
-
-**/*.md
-**/*.mdx
-
-**/*.prisma
-
-**/*.yml
-**/*.yaml
-
-**/*.lock

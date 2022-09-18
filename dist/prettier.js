@@ -11,9 +11,10 @@ var prettierConfig = {
     rangeEnd: Infinity,
     endOfLine: 'auto',
     plugins: [require.resolve('prettier-plugin-tailwindcss')],
-    // tailwindConfig: './path-to/tailwind.config.js',
+    // tailwindConfig: '<path-to>/tailwind.config.js',
     overrides: [
         {
+            // TODO: To be added
             files: '*.{babelrc,eslintrc,huskyrc,lintstagedrc,json,prettierrc,stylelintrc}',
             options: {
                 parser: 'json'

@@ -2,14 +2,14 @@ import type { Config } from 'stylelint'
 
 const defineStylelintConfig: Config = {
   extends: [
-    'stylelint-config-standard',
+    'stylelint-config-standard-scss',
     'stylelint-config-css-modules',
     'stylelint-config-rational-order',
     'stylelint-no-unsupported-browser-features',
     'stylelint-config-prettier'
   ],
   plugins: ['stylelint-declaration-block-no-ignored-properties'],
-  customSyntax: require('postcss-less'),
+  customSyntax: require('postcss-scss'),
   rules: {
     'block-no-empty': null,
     'no-empty-source': null,

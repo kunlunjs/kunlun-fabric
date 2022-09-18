@@ -52,6 +52,7 @@ const devDependencies = [
   '@types/node',
   '@types/prettier',
   'eslint',
+  'devmoji',
   'husky',
   'prettier',
   'stylelint',

@@ -25,4 +25,10 @@ yarn.lock
 
 LICENSE
 
+.docusaurus
+.yarn
+
+build
 dist
+coverage
+node_modules

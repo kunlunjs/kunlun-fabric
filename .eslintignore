@@ -1,9 +1,17 @@
-# Git
-.husky
-.gitignore
+node_modules
 
-# GitHub
+.husky
+.vscode
 .github
+
+.DS_Store
+.docusaurus
+.history
+.next
+.umi
+.gitignore
+.vercel
+.yarn
 
 # Syntax Format
 .editorconfig
@@ -11,27 +19,26 @@
 .prettierignore
 .stylelintignore
 
-.DS_Store
-
-# markdown mdx
-*.md
-*.mdx
-
 package-lock.json
 yarn.lock
-
-*.yaml
-*.yml
-.stackblitzrc
-
-LICENSE
 
 __fixtures__
 __mocks__
 
-node_modules
-.yarn
-.history
 build
 coverage
 dist
+
+_redirects
+
+*.bmp
+*.gif
+*.jpg
+*.jpeg
+*.png
+*.svg
+*.webp
+*.css
+*.less
+*.scss
+*.sass

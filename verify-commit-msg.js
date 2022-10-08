@@ -6,6 +6,7 @@ const chalk = require('chalk')
 const msgPath = process.argv[2]
 const msg = readFileSync(msgPath, 'utf-8').trim()
 
+const mergeReg = /^Merge branch/i
 const releaseRE = /^v\d/
 const pre = [
   'add', // add something
@@ -32,7 +33,7 @@ const commitRE = new RegExp(
   `^(revert: )?(${pre.join('|')})(\\(.+\\))?: .{1,50}`
 )
 
-if (!releaseRE.test(msg) && !commitRE.test(msg)) {
+if (!mergeReg.test(msg) && !releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log()
   console.error(
     `  ${chalk.bgRed(chalk.white(' ERROR '))} ${chalk.red(

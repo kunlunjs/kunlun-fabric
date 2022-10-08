@@ -125,30 +125,24 @@ module.exports = defineConfig({
               }
             ],
             pathGroupsExcludedImportTypes: [],
-            // example: let `import './nprogress.css';` after importing others
-            // in `packages/docusaurus-theme-classic/src/nprogress.ts`
             // see more: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#warnonunassignedimports-truefalse
             warnOnUnassignedImports: true
           }
         ],
 
-        // 允许空类型
         '@typescript-eslint/ban-types': [OFF],
-        // 允许 @ts-ignore
+        // @ts-ignore
         '@typescript-eslint/ban-ts-comment': [OFF],
-        // 允许已声明但未使用的变量
         '@typescript-eslint/no-unused-vars': [OFF],
-        // 允许使用 require
         '@typescript-eslint/no-var-requires': [OFF],
         '@typescript-eslint/no-explicit-any': [OFF],
-        // 允许空函数
         '@typescript-eslint/no-empty-function': [OFF],
         '@typescript-eslint/consistent-type-imports': 1,
-        // 允许空类型声明 interface Props {}
+        // interface Props {}
         '@typescript-eslint/no-empty-interface': [OFF],
-        // 允许非空断言 data!.type
+        // data!.type
         '@typescript-eslint/no-non-null-assertion': [OFF],
-        // 允许使用 /// <reference types="react" />
+        // /// <reference types="react" />
         // '@typescript-eslint/triple-slash-reference': [OFF],
         '@typescript-eslint/explicit-function-return-type': [OFF],
         '@typescript-eslint/explicit-module-boundary-types': [OFF],

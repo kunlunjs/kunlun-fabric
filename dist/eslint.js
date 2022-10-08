@@ -123,8 +123,6 @@ var eslintConfig = {
                             }
                         ],
                         pathGroupsExcludedImportTypes: [],
-                        // example: let `import './nprogress.css';` after importing others
-                        // in `packages/docusaurus-theme-classic/src/nprogress.ts`
                         // see more: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#warnonunassignedimports-truefalse
                         warnOnUnassignedImports: true
                     }
@@ -140,7 +138,7 @@ var eslintConfig = {
                 '@typescript-eslint/no-empty-function': [OFF],
                 '@typescript-eslint/no-empty-interface': [OFF],
                 '@typescript-eslint/no-non-null-assertion': [OFF],
-                // `/// <reference types="react" />`
+                // /// <reference types="react" />
                 // '@typescript-eslint/triple-slash-reference': [OFF],
                 '@typescript-eslint/no-non-null-asserted-optional-chain': OFF,
                 '@typescript-eslint/require-await': OFF,

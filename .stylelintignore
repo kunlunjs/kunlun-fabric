@@ -4,13 +4,29 @@
 !*.css
 !*.less
 !*.scss
-__tests__/
+
 .husky
 .github
 .vscode
+
+.DS_Store
+.docusaurus
+.gitignore
+.history
+.next
+.umi
+.vercel
+.yarn
+
+_redirects
+__fixtures__
+__mocks__
+__tests__/
+
 build
 dist
 coverage
+node_modules
 
 # minifier css
 **/*.min.css

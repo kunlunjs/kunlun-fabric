@@ -17,6 +17,7 @@
 _redirects
 __fixtures__
 __mocks__
+__tests__
 
 build
 coverage

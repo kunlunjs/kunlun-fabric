@@ -1,4 +1,5 @@
-node_modules
+*
+!*/
 
 .husky
 .vscode
@@ -6,21 +7,18 @@ node_modules
 
 .DS_Store
 .docusaurus
+.gitignore
 .history
 .next
 .umi
-.gitignore
 .vercel
 .yarn
 
-# Syntax Format
-.editorconfig
-.eslintignore
-.prettierignore
-.stylelintignore
+_redirects
+__fixtures__
+__mocks__
 
 package-lock.json
-yarn.lock
 
 LICENSE
 
@@ -28,16 +26,13 @@ build
 dist
 coverage
 node_modules
-_redirects
 
-*.bmp
-*.gif
-*.jpg
-*.jpeg
-*.png
-*.svg
-*.webp
-*.css
-*.less
-*.scss
-*.sass
+!**/*.js
+!**/*.jsx
+!**/*.ts
+!**/*.tsx
+!**/*.json
+# !**/*.svg
+!**/*.css
+!**/*.less
+!**/*.scss

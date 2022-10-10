@@ -45,7 +45,7 @@ if (!mergeReg.test(msg) && !releaseRE.test(msg) && !commitRE.test(msg)) {
       `    ${chalk.green(`feat: add 'comments' option`)}\n` +
       `    ${chalk.green(`fix: handle events on blur (close #28)`)}\n\n` +
       chalk.red(
-        `  See https://github.com/kunlunjs/kunlun-fabric/blob/main/src/verify-commit-msg.ts for more details.\n`
+        `  See https://github.com/kunlunjs/kunlun-fabric/blob/main/verify-commit-msg.js for more details.\n`
       )
   )
   process.exit(1)

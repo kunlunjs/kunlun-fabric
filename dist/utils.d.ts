@@ -1,5 +1,5 @@
 import { configFiles } from './configs';
-declare type packageFieldName = keyof typeof configFiles;
+type packageFieldName = keyof typeof configFiles;
 export declare function isExist(config: string[], packageFieldName?: packageFieldName, filePath?: string): boolean;
 export declare const ignores: readonly [".editorconfig", ".eslintignore", ".prettierignore", ".stylelintignore"];
 export declare function writeFile(file: typeof ignores[number]): void;

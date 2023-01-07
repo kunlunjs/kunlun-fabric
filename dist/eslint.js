@@ -12,9 +12,12 @@ var eslintConfig = {
     env: {
         browser: true,
         commonjs: true,
-        es2021: true,
         node: true,
-        jest: true
+        es2022: true,
+        worker: true,
+        jest: true,
+        mocha: true,
+        jasmine: true
     },
     parserOptions: {
         sourceType: 'module',
@@ -49,13 +52,16 @@ var eslintConfig = {
                     alwaysTryTypes: true
                 }
             },
+            // https://eslint.org/docs/latest/user-guide/configuring/language-options
             env: {
-                'es2021': true,
-                'node': true,
-                'browser': true,
-                'commonjs': true,
-                'jest/globals': true,
-                'cypress/globals': true
+                browser: true,
+                node: true,
+                commonjs: true,
+                es2022: true,
+                worker: true,
+                jest: true,
+                mocha: true,
+                jasmine: true
             },
             extends: [
                 'eslint:recommended',
@@ -63,6 +69,8 @@ var eslintConfig = {
                 // 'plugin:node/recommended',
                 'plugin:react/recommended',
                 'plugin:react-hooks/recommended',
+                'plugin:import/recommended',
+                'plugin:import/typescript',
                 'plugin:jsx-a11y/recommended',
                 'plugin:jest/recommended',
                 'plugin:jest-dom/recommended',
@@ -72,7 +80,7 @@ var eslintConfig = {
                 'plugin:regexp/recommended',
                 'plugin:prettier/recommended'
             ],
-            plugins: ['import', 'unused-imports', 'tailwindcss'],
+            plugins: ['unused-imports', 'tailwindcss'],
             rules: {
                 'no-restricted-imports': [
                     'error',
@@ -82,10 +90,14 @@ var eslintConfig = {
                 ],
                 // 'linebreak-style': ['error', 'unix'],
                 // import 排序
+                'import/default': OFF,
+                'import/no-named-as-default': OFF,
+                'import/no-named-as-default-member': OFF,
+                'import/no-unresolved': ERROR,
                 'import/order': [
                     'error',
                     {
-                        groups: [
+                        'groups': [
                             'builtin',
                             'external',
                             'internal',
@@ -95,11 +107,12 @@ var eslintConfig = {
                             'object'
                             // 'type'
                         ],
-                        alphabetize: {
+                        'newlines-between': 'always',
+                        'alphabetize': {
                             order: 'asc',
                             caseInsensitive: true
                         },
-                        pathGroups: [
+                        'pathGroups': [
                             // always put css import to the last, ref:
                             // https://github.com/import-js/eslint-plugin-import/issues/1239
                             {
@@ -122,9 +135,9 @@ var eslintConfig = {
                                 group: 'internal'
                             }
                         ],
-                        pathGroupsExcludedImportTypes: [],
+                        'pathGroupsExcludedImportTypes': [],
                         // see more: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#warnonunassignedimports-truefalse
-                        warnOnUnassignedImports: true
+                        'warnOnUnassignedImports': true
                     }
                 ],
                 '@typescript-eslint/ban-types': [OFF],
@@ -142,9 +155,6 @@ var eslintConfig = {
                 // '@typescript-eslint/triple-slash-reference': [OFF],
                 '@typescript-eslint/no-non-null-asserted-optional-chain': OFF,
                 '@typescript-eslint/require-await': OFF,
-                'import/default': OFF,
-                'import/no-named-as-default-member': OFF,
-                'import/no-named-as-default': OFF,
                 'unused-imports/no-unused-imports': 'warn',
                 'react/react-in-jsx-scope': OFF,
                 'react/no-unescaped-entities': OFF,
@@ -214,7 +224,15 @@ var eslintConfig = {
         {
             files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
             env: {
-                jest: true
+                jest: true,
+                mocha: true,
+                jasmine: true
+            }
+        },
+        {
+            files: ['**/*.stories.*'],
+            rules: {
+                'import/no-anonymous-default-export': 'off'
             }
         }
     ]

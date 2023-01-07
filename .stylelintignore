@@ -16,6 +16,7 @@
 .next
 .umi
 .vercel
+.VSCodeCounter
 .yarn
 
 _redirects

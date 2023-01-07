@@ -9,12 +9,16 @@ const ERROR = 2
 
 module.exports = defineConfig({
   root: true,
+  // https://eslint.org/docs/latest/user-guide/configuring/language-options
   env: {
     browser: true,
-    commonjs: true,
-    es2021: true,
     node: true,
-    jest: true
+    commonjs: true,
+    es2022: true,
+    worker: true,
+    jest: true,
+    mocha: true,
+    jasmine: true
   },
   globals: {
     JSX: true
@@ -55,9 +59,14 @@ module.exports = defineConfig({
         'mdx/language-mapper': {}
       },
       env: {
-        es2021: true,
+        browser: true,
         node: true,
-        browser: true
+        commonjs: true,
+        es2022: true,
+        worker: true,
+        jest: true,
+        mocha: true,
+        jasmine: true
       },
       extends: [
         'eslint:recommended',
@@ -65,6 +74,8 @@ module.exports = defineConfig({
         // 'plugin:node/recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
+        'plugin:import/recommended',
+        'plugin:import/typescript',
         'plugin:jsx-a11y/recommended',
         'plugin:jest/recommended',
         'plugin:jest-dom/recommended',
@@ -73,7 +84,7 @@ module.exports = defineConfig({
         'plugin:regexp/recommended',
         'plugin:prettier/recommended'
       ],
-      plugins: ['import', 'unused-imports', 'tailwindcss'],
+      plugins: ['unused-imports', 'tailwindcss'],
       rules: {
         'no-restricted-imports': [
           ERROR,
@@ -84,6 +95,10 @@ module.exports = defineConfig({
         // 'linebreak-style': [ERROR, 'unix'],
 
         // import 排序
+        'import/default': OFF,
+        'import/no-named-as-default': OFF,
+        'import/no-named-as-default-member': OFF,
+        'import/no-unresolved': ERROR,
         'import/order': [
           WARNING,
           {
@@ -147,10 +162,6 @@ module.exports = defineConfig({
         '@typescript-eslint/explicit-function-return-type': [OFF],
         '@typescript-eslint/explicit-module-boundary-types': [OFF],
         '@typescript-eslint/require-await': OFF,
-
-        'import/default': 0,
-        'import/no-named-as-default-member': OFF,
-        'import/no-named-as-default': OFF,
 
         'unused-imports/no-unused-imports': 'warn',
 
@@ -224,7 +235,15 @@ module.exports = defineConfig({
     {
       files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
       env: {
-        jest: true
+        jest: true,
+        mocha: true,
+        jasmine: true
+      }
+    },
+    {
+      files: ['**/*.stories.*'],
+      rules: {
+        'import/no-anonymous-default-export': 'off'
       }
     }
   ]

@@ -3,12 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require('@typescript-eslint/parser');
 require('@typescript-eslint/eslint-plugin');
 require('eslint-import-resolver-typescript');
+/**
+ * @see https://github.com/eslint/eslint/issues/3458
+ * @see https://www.npmjs.com/package/@rushstack/eslint-patch
+ */
 require('@rushstack/eslint-patch/modern-module-resolution');
 var OFF = 0;
 var WARNING = 1;
 var ERROR = 2;
 var eslintConfig = {
     root: true,
+    parser: '@babel/eslint-parser',
     env: {
         browser: true,
         commonjs: true,
@@ -22,8 +27,12 @@ var eslintConfig = {
     parserOptions: {
         sourceType: 'module',
         ecmaVersion: 'latest',
+        requireConfigFile: false,
         ecmaFeatures: {
             jsx: true
+        },
+        babelOptions: {
+            presets: [require.resolve('@babel/preset-react')]
         }
     },
     ignorePatterns: ['node_modules/*'],
@@ -72,6 +81,9 @@ var eslintConfig = {
                 'plugin:import/recommended',
                 'plugin:import/typescript',
                 'plugin:jsx-a11y/recommended',
+                /**
+                 * or use plugins: ['jest', 'jest-dom', 'testing-library']
+                 */
                 'plugin:jest/recommended',
                 'plugin:jest-dom/recommended',
                 'plugin:testing-library/react',
@@ -80,7 +92,7 @@ var eslintConfig = {
                 'plugin:regexp/recommended',
                 'plugin:prettier/recommended'
             ],
-            plugins: ['unused-imports', 'tailwindcss'],
+            plugins: ['unused-imports', /* 'prefer-let', */ 'tailwindcss'],
             rules: {
                 'no-restricted-imports': [
                     'error',
@@ -89,6 +101,7 @@ var eslintConfig = {
                     }
                 ],
                 // 'linebreak-style': ['error', 'unix'],
+                // 'prefer-let/prefer-let': WARNING,
                 // import 排序
                 'import/default': OFF,
                 'import/no-named-as-default': OFF,
@@ -97,7 +110,8 @@ var eslintConfig = {
                 'import/order': [
                     'error',
                     {
-                        'groups': [
+                        // or groups: [['builtin', 'external'], 'internal', ['parent', 'sibling', 'index'], 'object']
+                        groups: [
                             'builtin',
                             'external',
                             'internal',
@@ -107,12 +121,12 @@ var eslintConfig = {
                             'object'
                             // 'type'
                         ],
-                        'newlines-between': 'always',
-                        'alphabetize': {
+                        // 'newlines-between': 'always',
+                        alphabetize: {
                             order: 'asc',
                             caseInsensitive: true
                         },
-                        'pathGroups': [
+                        pathGroups: [
                             // always put css import to the last, ref:
                             // https://github.com/import-js/eslint-plugin-import/issues/1239
                             {
@@ -135,9 +149,9 @@ var eslintConfig = {
                                 group: 'internal'
                             }
                         ],
-                        'pathGroupsExcludedImportTypes': [],
+                        pathGroupsExcludedImportTypes: [],
                         // see more: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#warnonunassignedimports-truefalse
-                        'warnOnUnassignedImports': true
+                        warnOnUnassignedImports: true
                     }
                 ],
                 '@typescript-eslint/ban-types': [OFF],
@@ -194,6 +208,7 @@ var eslintConfig = {
                 'jsx-a11y/no-noninteractive-element-interactions': OFF,
                 'jest/consistent-test-it': WARNING,
                 'jest/expect-expect': OFF,
+                'jest/no-disabled-tests': OFF,
                 'jest/no-large-snapshots': [
                     WARNING,
                     { maxSize: Infinity, inlineMaxSize: 10 }
@@ -227,6 +242,37 @@ var eslintConfig = {
                 jest: true,
                 mocha: true,
                 jasmine: true
+            }
+        },
+        {
+            // all code blocks in .md files
+            files: ['**/*.md/*.js?(x)', '**/*.md/*.ts?(x)'],
+            rules: {
+                'no-unreachable': OFF,
+                'no-unused-expressions': OFF,
+                'no-unused-labels': OFF,
+                'no-unused-vars': OFF,
+                'jsx-a11y/alt-text': OFF,
+                'jsx-a11y/anchor-has-content': OFF,
+                // 'prefer-let/prefer-let': OFF,
+                'react/jsx-no-comment-textnodes': OFF,
+                'react/jsx-no-undef': OFF
+            }
+        },
+        {
+            // all ```ts & ```tsx code blocks in .md files
+            files: ['**/*.md/*.ts?(x)'],
+            rules: {
+                '@typescript-eslint/no-unused-expressions': OFF,
+                '@typescript-eslint/no-unused-vars': OFF
+            }
+        },
+        {
+            files: ['packages/**/*.*'],
+            excludedFiles: '**/__tests__/**/*.*',
+            rules: {
+                // Validate dependencies are listed in workspace package.json files
+                'import/no-extraneous-dependencies': ERROR
             }
         },
         {

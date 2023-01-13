@@ -112,6 +112,7 @@ module.exports = defineConfig({
               'object'
               // 'type'
             ],
+            // 'newlines-between': 'always',
             alphabetize: {
               order: 'asc',
               caseInsensitive: true

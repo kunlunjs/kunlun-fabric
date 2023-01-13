@@ -3,6 +3,10 @@ import type { Linter } from 'eslint'
 require('@typescript-eslint/parser')
 require('@typescript-eslint/eslint-plugin')
 require('eslint-import-resolver-typescript')
+/**
+ * @see https://github.com/eslint/eslint/issues/3458
+ * @see https://www.npmjs.com/package/@rushstack/eslint-patch
+ */
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 const OFF = 0
@@ -11,6 +15,7 @@ const ERROR = 2
 
 const eslintConfig: Linter.Config = {
   root: true,
+  parser: '@babel/eslint-parser',
   env: {
     browser: true,
     commonjs: true,
@@ -24,8 +29,12 @@ const eslintConfig: Linter.Config = {
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 'latest',
+    requireConfigFile: false,
     ecmaFeatures: {
       jsx: true
+    },
+    babelOptions: {
+      presets: [require.resolve('@babel/preset-react')]
     }
   },
   ignorePatterns: ['node_modules/*'],
@@ -74,6 +83,9 @@ const eslintConfig: Linter.Config = {
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:jsx-a11y/recommended',
+        /**
+         * or use plugins: ['jest', 'jest-dom', 'testing-library']
+         */
         'plugin:jest/recommended',
         'plugin:jest-dom/recommended',
         'plugin:testing-library/react',
@@ -82,7 +94,7 @@ const eslintConfig: Linter.Config = {
         'plugin:regexp/recommended',
         'plugin:prettier/recommended'
       ],
-      plugins: ['unused-imports', 'tailwindcss'],
+      plugins: ['unused-imports', /* 'prefer-let', */ 'tailwindcss'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -91,6 +103,7 @@ const eslintConfig: Linter.Config = {
           }
         ],
         // 'linebreak-style': ['error', 'unix'],
+        // 'prefer-let/prefer-let': WARNING,
 
         // import 排序
         'import/default': OFF,
@@ -100,7 +113,8 @@ const eslintConfig: Linter.Config = {
         'import/order': [
           'error',
           {
-            'groups': [
+            // or groups: [['builtin', 'external'], 'internal', ['parent', 'sibling', 'index'], 'object']
+            groups: [
               'builtin',
               'external',
               'internal',
@@ -110,12 +124,12 @@ const eslintConfig: Linter.Config = {
               'object'
               // 'type'
             ],
-            'newlines-between': 'always',
-            'alphabetize': {
+            // 'newlines-between': 'always',
+            alphabetize: {
               order: 'asc',
               caseInsensitive: true
             },
-            'pathGroups': [
+            pathGroups: [
               // always put css import to the last, ref:
               // https://github.com/import-js/eslint-plugin-import/issues/1239
               {
@@ -138,9 +152,9 @@ const eslintConfig: Linter.Config = {
                 group: 'internal'
               }
             ],
-            'pathGroupsExcludedImportTypes': [],
+            pathGroupsExcludedImportTypes: [],
             // see more: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#warnonunassignedimports-truefalse
-            'warnOnUnassignedImports': true
+            warnOnUnassignedImports: true
           }
         ],
 
@@ -202,6 +216,7 @@ const eslintConfig: Linter.Config = {
 
         'jest/consistent-test-it': WARNING,
         'jest/expect-expect': OFF,
+        'jest/no-disabled-tests': OFF,
         'jest/no-large-snapshots': [
           WARNING,
           { maxSize: Infinity, inlineMaxSize: 10 }
@@ -236,6 +251,37 @@ const eslintConfig: Linter.Config = {
         jest: true,
         mocha: true,
         jasmine: true
+      }
+    },
+    {
+      // all code blocks in .md files
+      files: ['**/*.md/*.js?(x)', '**/*.md/*.ts?(x)'],
+      rules: {
+        'no-unreachable': OFF,
+        'no-unused-expressions': OFF,
+        'no-unused-labels': OFF,
+        'no-unused-vars': OFF,
+        'jsx-a11y/alt-text': OFF,
+        'jsx-a11y/anchor-has-content': OFF,
+        // 'prefer-let/prefer-let': OFF,
+        'react/jsx-no-comment-textnodes': OFF,
+        'react/jsx-no-undef': OFF
+      }
+    },
+    {
+      // all ```ts & ```tsx code blocks in .md files
+      files: ['**/*.md/*.ts?(x)'],
+      rules: {
+        '@typescript-eslint/no-unused-expressions': OFF,
+        '@typescript-eslint/no-unused-vars': OFF
+      }
+    },
+    {
+      files: ['packages/**/*.*'],
+      excludedFiles: '**/__tests__/**/*.*',
+      rules: {
+        // Validate dependencies are listed in workspace package.json files
+        'import/no-extraneous-dependencies': ERROR
       }
     },
     {

@@ -18,7 +18,7 @@
 _redirects
 __fixtures__
 __mocks__
-__tests__
+# __tests__
 
 package-lock.json
 

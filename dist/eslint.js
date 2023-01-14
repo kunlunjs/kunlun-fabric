@@ -174,13 +174,14 @@ var eslintConfig = {
                 'react/no-unescaped-entities': OFF,
                 // Sometimes we do need the props as a whole, e.g. when spreading
                 'react/destructuring-assignment': OFF,
-                'react/function-component-definition': [
-                    WARNING,
-                    {
-                        namedComponents: 'function-declaration',
-                        unnamedComponents: 'arrow-function'
-                    }
-                ],
+                // 'react/function-component-definition': [
+                //   WARNING,
+                //   {
+                //     namedComponents: 'function-declaration',
+                //     unnamedComponents: 'arrow-function'
+                //   }
+                // ],
+                'react/function-component-definition': OFF,
                 'react/jsx-filename-extension': OFF,
                 'react/jsx-key': [ERROR, { checkFragmentShorthand: true }],
                 'react/jsx-no-useless-fragment': [ERROR, { allowExpressions: true }],
@@ -192,10 +193,11 @@ var eslintConfig = {
                 ],
                 'react/prefer-stateless-function': WARNING,
                 'react/prop-types': OFF,
-                'react/require-default-props': [
-                    ERROR,
-                    { ignoreFunctionalComponents: true }
-                ],
+                // 'react/require-default-props': [
+                //   ERROR,
+                //   { ignoreFunctionalComponents: true }
+                // ],
+                'react/require-default-props': OFF,
                 'react-hooks/rules-of-hooks': ERROR,
                 'react-hooks/exhaustive-deps': WARNING,
                 'jsx-a11y/aria-role': [OFF],
@@ -219,7 +221,7 @@ var eslintConfig = {
                 'jest/prefer-spy-on': WARNING,
                 'jest/prefer-to-be': WARNING,
                 'jest/prefer-to-have-length': WARNING,
-                'jest/require-top-level-describe': ERROR,
+                'jest/require-top-level-describe': OFF,
                 'jest/valid-title': [
                     ERROR,
                     {
@@ -236,14 +238,14 @@ var eslintConfig = {
                 'prettier/prettier': ['error', {}, { usePrettierrc: true }]
             }
         },
-        {
-            files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
-            env: {
-                jest: true,
-                mocha: true,
-                jasmine: true
-            }
-        },
+        // {
+        //   files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
+        //   env: {
+        //     jest: true,
+        //     mocha: true,
+        //     jasmine: true
+        //   }
+        // },
         {
             // all code blocks in .md files
             files: ['**/*.md/*.js?(x)', '**/*.md/*.ts?(x)'],

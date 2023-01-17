@@ -32,6 +32,7 @@ module.exports = defineConfig({
   },
   ignorePatterns: ['node_modules/*'],
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  plugins: ['html'],
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],

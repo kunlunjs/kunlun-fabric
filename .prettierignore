@@ -29,6 +29,7 @@ dist
 coverage
 node_modules
 
+!**/*.html
 !**/*.js
 !**/*.jsx
 !**/*.ts

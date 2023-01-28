@@ -85,7 +85,7 @@ module.exports = defineConfig({
         'plugin:regexp/recommended',
         'plugin:prettier/recommended'
       ],
-      plugins: ['unused-imports', 'tailwindcss'],
+      plugins: ['unused-imports' /*, 'tailwindcss'*/],
       rules: {
         'no-restricted-imports': [
           ERROR,

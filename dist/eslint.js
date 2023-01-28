@@ -93,7 +93,7 @@ var eslintConfig = {
                 'plugin:regexp/recommended',
                 'plugin:prettier/recommended'
             ],
-            plugins: ['unused-imports', /* 'prefer-let', */ 'tailwindcss'],
+            plugins: ['unused-imports' /* 'prefer-let', 'tailwindcss' */],
             rules: {
                 'no-restricted-imports': [
                     'error',

@@ -70,3 +70,11 @@ Run the command to check whether the following configuration file is generated
 ```bash
 pnpm build
 ```
+
+## Resource
+- [husky](https://github.com/typicode/husky)
+- [lint-staged](https://github.com/okonet/lint-staged)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Stylelint](https://stylelint.io/)
+- [stylelint-config-rational-order](https://www.npmjs.com/package/stylelint-config-rational-order)

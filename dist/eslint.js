@@ -283,6 +283,17 @@ var eslintConfig = {
             rules: {
                 'import/no-anonymous-default-export': 'off'
             }
+        },
+        {
+            files: ['cypress/**/*', '**/*.cy.*'],
+            rules: {
+                '@typescript-eslint/no-var-requires': OFF,
+                'cypress/no-unnecessary-waiting': OFF,
+                'jest/valid-title': OFF,
+                'testing-library/await-async-utils': OFF,
+                'testing-library/await-async-query': OFF,
+                'testing-library/prefer-screen-queries': OFF
+            }
         }
     ]
 };

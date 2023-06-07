@@ -91,12 +91,15 @@ const eslintConfig: Linter.Config = {
         'plugin:jest-dom/recommended',
         'plugin:testing-library/react',
         'plugin:cypress/recommended',
-        // 'plugin:mdx/recommended',
+        'plugin:mdx/recommended',
         'plugin:regexp/recommended',
         'plugin:prettier/recommended'
       ],
       plugins: ['unused-imports' /* 'prefer-let', 'tailwindcss' */],
       rules: {
+        'no-case-declarations': OFF,
+        'no-fallthrough': OFF,
+        'no-unsafe-finally': OFF,
         'no-restricted-imports': [
           'error',
           {
@@ -191,7 +194,8 @@ const eslintConfig: Linter.Config = {
         'react/function-component-definition': OFF,
         'react/jsx-filename-extension': OFF,
         'react/jsx-key': [ERROR, { checkFragmentShorthand: true }],
-        'react/jsx-no-useless-fragment': [ERROR, { allowExpressions: true }],
+        // 'react/jsx-no-useless-fragment': [ERROR, { allowExpressions: true }],
+        'react/jsx-no-useless-fragment': OFF,
         'react/jsx-props-no-spreading': OFF,
         'react/no-array-index-key': OFF, // We build a static site, and nearly all components don't change.
         'react/no-unstable-nested-components': [
@@ -231,17 +235,18 @@ const eslintConfig: Linter.Config = {
         'jest/prefer-to-be': WARNING,
         'jest/prefer-to-have-length': WARNING,
         'jest/require-top-level-describe': OFF,
-        'jest/valid-title': [
-          ERROR,
-          {
-            mustNotMatch: {
-              it: [
-                '^should|\\.$',
-                'Titles should not begin with "should" or end with a full-stop'
-              ]
-            }
-          }
-        ],
+        'jest/valid-title': OFF,
+        // 'jest/valid-title': [
+        //   ERROR,
+        //   {
+        //     mustNotMatch: {
+        //       it: [
+        //         '^should|\\.$',
+        //         'Titles should not begin with "should" or end with a full-stop'
+        //       ]
+        //     }
+        //   }
+        // ],
         'jest/no-deprecated-functions': OFF,
 
         // use Prettier format rule

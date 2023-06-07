@@ -5,10 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cmdExist = exports.execPromise = exports.generateFile = exports.writeFile = exports.ignores = exports.isExist = void 0;
 var child_process_1 = require("child_process");
+var fs_extra_1 = require("fs-extra");
 var os_1 = __importDefault(require("os"));
 var path_1 = require("path");
-var chalk_1 = __importDefault(require("chalk"));
-var fs_extra_1 = require("fs-extra");
 // https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
 // import emoji from 'node-emoji'
 var configs_1 = require("./configs");
@@ -44,7 +43,7 @@ exports.ignores = [
 function writeFile(file) {
     var editorconfig = (0, path_1.resolve)(root_1.cwd, file);
     if (!(0, fs_extra_1.existsSync)(editorconfig)) {
-        console.log(chalk_1.default.green("\u221A ".concat(chalk_1.default.gray(file))));
+        console.log("\u001B[32m\u221A \u001B[90m".concat(file, "\u001B[0m"));
         (0, fs_extra_1.writeFileSync)(editorconfig, (0, fs_extra_1.readFileSync)((0, path_1.resolve)(__dirname, "../".concat(file))));
     }
 }
@@ -56,13 +55,13 @@ function generateFile(filename, _a) {
     if (!isExistFile) {
         // 判断是否包含目录及确认目录已建
         if (output.match(/\//)) {
-            var dir = output.match(/(.*\/)[\w-.]+$/)[1];
+            var dir = output.match(/(.*\/)[\w\-.]+$/)[1];
             var dirname = (0, path_1.resolve)(root_1.cwd, dir);
             if (!(0, fs_extra_1.existsSync)(dirname)) {
                 (0, fs_extra_1.mkdirpSync)(dirname);
             }
         }
-        console.log(chalk_1.default.green("\u221A ".concat(chalk_1.default.gray(output))));
+        console.log("\u001B[32m\u221A \u001B[90m".concat(output, "\u001B[0m"));
         var content = (0, fs_extra_1.readFileSync)((0, path_1.resolve)(__dirname, contentFile)).toString();
         if (exclude) {
             content = content

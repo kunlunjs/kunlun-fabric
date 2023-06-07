@@ -35,11 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var chalk_1 = __importDefault(require("chalk"));
 var command_exists_1 = require("command-exists");
 var node_emoji_1 = require("node-emoji");
 var root_1 = require("./root");
@@ -173,7 +169,7 @@ function run() {
                 //   console.error(error)
                 //   process.exit(1)
                 // }
-                console.log("".concat((0, node_emoji_1.get)('point_right'), " ").concat(chalk_1.default.yellowBright("Execute command \"".concat(command, " i ").concat(uninstalled.join(' '), " -D\" to install devDependencies"))));
+                console.log("".concat((0, node_emoji_1.get)('point_right'), " ").concat("\u001B[93mExecute command \"".concat(command, " i ").concat(uninstalled.join(' '), " -D\" to install devDependencies\u001B[0m")));
             }
             return [2 /*return*/];
         });

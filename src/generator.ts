@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { sync } from 'command-exists'
 import { get } from 'node-emoji'
 import { pkg } from './root'
@@ -135,11 +134,11 @@ async function run() {
     // }
 
     console.log(
-      `${get('point_right')} ${chalk.yellowBright(
-        `Execute command "${command} i ${uninstalled.join(
-          ' '
-        )} -D" to install devDependencies`
-      )}`
+      `${get(
+        'point_right'
+      )} ${`\x1b[93mExecute command "${command} i ${uninstalled.join(
+        ' '
+      )} -D" to install devDependencies\x1b[0m`}`
     )
   }
 }

@@ -1,6 +1,5 @@
 // Invoked on the commit-msg git hook
 const { readFileSync } = require('fs')
-const chalk = require('chalk')
 
 // process.argv: [node, verify-commit-msg.js, .git/COMMIT_EDITMSG]
 const msgPath = process.argv[2]
@@ -35,18 +34,15 @@ const commitRE = new RegExp(
 
 if (!mergeReg.test(msg) && !releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log()
+  console.log()
   console.error(
-    `  ${chalk.bgRed(chalk.white(' ERROR '))} ${chalk.red(
-      `invalid commit message format.`
-    )}\n\n` +
-      chalk.red(
-        `  Proper commit message format is required for automated changelog generation. Examples:\n\n`
-      ) +
-      `    ${chalk.green(`feat: add 'comments' option`)}\n` +
-      `    ${chalk.green(`fix: handle events on blur (close #28)`)}\n\n` +
-      chalk.red(
-        `  See https://github.com/kunlunjs/kunlun-fabric/blob/main/verify-commit-msg.js for more details.\n`
-      )
+    `  \x1b[41m\x1b[37m ERROR \x1b[0m
+      \x1b[31minvalid commit message format.\x1b[0m
+    \n\n` +
+      `    \x1b[31mProper commit message format is required for automated changelog generation. Examples:\x1b[0m\n\n` +
+      `    \x1b[32mfeat: add 'comments' option\x1b[0m\n` +
+      `    \x1b[32mfix: handle events on blur (close #28)\x1b[0m\n\n` +
+      `    \x1b[31mSee https://github.com/kunlunjs/kunlun-fabric/blob/main/verify-commit-msg.js for more details.\x1b[0m\n`
   )
   process.exit(1)
 }

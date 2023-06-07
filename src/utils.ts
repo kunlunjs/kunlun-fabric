@@ -1,8 +1,7 @@
 import { exec, execSync } from 'child_process'
+import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
 import os from 'os'
 import { resolve } from 'path'
-import chalk from 'chalk'
-import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
 // https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
 // import emoji from 'node-emoji'
 import { configFiles } from './configs'
@@ -42,10 +41,10 @@ export const ignores = [
   '.stylelintignore'
 ] as const
 
-export function writeFile(file: typeof ignores[number]) {
+export function writeFile(file: (typeof ignores)[number]) {
   const editorconfig = resolve(cwd, file)
   if (!existsSync(editorconfig)) {
-    console.log(chalk.green(`√ ${chalk.gray(file)}`))
+    console.log(`\x1b[32m√ \x1b[90m${file}\x1b[0m`)
     writeFileSync(editorconfig, readFileSync(resolve(__dirname, `../${file}`)))
   }
 }
@@ -96,13 +95,13 @@ export function generateFile(
   if (!isExistFile) {
     // 判断是否包含目录及确认目录已建
     if (output.match(/\//)) {
-      const dir = output.match(/(.*\/)[\w-.]+$/)[1]
+      const dir = output.match(/(.*\/)[\w\-.]+$/)[1]
       const dirname = resolve(cwd, dir)
       if (!existsSync(dirname)) {
         mkdirpSync(dirname)
       }
     }
-    console.log(chalk.green(`√ ${chalk.gray(output)}`))
+    console.log(`\x1b[32m√ \x1b[90m${output}\x1b[0m`)
     let content = readFileSync(resolve(__dirname, contentFile)).toString()
     if (exclude) {
       content = content

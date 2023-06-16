@@ -3,21 +3,21 @@ type packageFieldName = keyof typeof configFiles;
 export declare function isExist(config: string[], packageFieldName?: packageFieldName, filePath?: string): boolean;
 export declare const ignores: readonly [".editorconfig", ".eslintignore", ".prettierignore", ".stylelintignore"];
 export declare function writeFile(file: (typeof ignores)[number]): void;
-export declare function generateFile(filename: 'commit-msg' | 'pre-commit' | 'prepare-commit-msg' | 'lint-staged.config.js' | 'verify-commit-msg.js' | '.eslintrc.js' | 'prettier.config.js' | 'stylelint.config.js' | 'extensions.json' | 'launch.json' | 'settings.json', { packageFieldName, contentFile, exclude, output }: {
+export declare function generateFile(filename: 'commit-msg' | 'pre-commit' | 'prepare-commit-msg' | 'lint-staged.config.js' | 'verify-commit-msg.js' | '.eslintrc.js' | 'prettier.config.js' | 'stylelint.config.js' | 'extensions.json' | 'launch.json' | 'settings.json' | '.npmrc', { packageFieldName, contentFile, exclude, output }: {
     /**
-     * 在 package.json 中的 name
+     * package.json field name
      */
     packageFieldName?: packageFieldName;
     /**
-     * 内容
+     * File content
      */
     contentFile?: string;
     /**
-     * 需要排除的内容
+     * Content that needs to be excluded
      */
     exclude?: string[];
     /**
-     * 输出目录
+     * Output directory
      */
     output?: string;
 }): void;

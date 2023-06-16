@@ -53,7 +53,7 @@ function generateFile(filename, _a) {
     output = output || filename;
     var isExistFile = isExist(packageFieldName ? configs_1.configFiles[packageFieldName] : [], packageFieldName, output);
     if (!isExistFile) {
-        // 判断是否包含目录及确认目录已建
+        // Confirm that the folder already exists or create a new one.
         if (output.match(/\//)) {
             var dir = output.match(/(.*\/)[\w\-.]+$/)[1];
             var dirname = (0, path_1.resolve)(root_1.cwd, dir);

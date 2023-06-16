@@ -6,7 +6,6 @@ var defineStylelintConfig = {
         'stylelint-config-css-modules',
         'stylelint-config-rational-order',
         'stylelint-no-unsupported-browser-features',
-        'stylelint-config-prettier',
         'stylelint-prettier/recommended'
     ],
     plugins: [

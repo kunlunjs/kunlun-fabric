@@ -12,13 +12,13 @@ module.exports = defineConfig({
   // https://eslint.org/docs/latest/user-guide/configuring/language-options
   env: {
     browser: true,
-    node: true,
     commonjs: true,
     es2022: true,
-    worker: true,
-    jest: true,
     mocha: true,
-    jasmine: true
+    node: true,
+    jasmine: true,
+    jest: true,
+    worker: true
   },
   globals: {
     JSX: true
@@ -61,13 +61,13 @@ module.exports = defineConfig({
       },
       env: {
         browser: true,
-        node: true,
         commonjs: true,
         es2022: true,
-        worker: true,
+        jasmine: true,
         jest: true,
         mocha: true,
-        jasmine: true
+        node: true,
+        worker: true
       },
       extends: [
         'eslint:recommended',
@@ -159,7 +159,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-empty-interface': [OFF],
         // data!.type
         '@typescript-eslint/no-non-null-assertion': [OFF],
-        // /// <reference types="react" />
+        // `/// <reference types="react" />`
         // '@typescript-eslint/triple-slash-reference': [OFF],
         '@typescript-eslint/explicit-function-return-type': [OFF],
         '@typescript-eslint/explicit-module-boundary-types': [OFF],

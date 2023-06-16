@@ -67,13 +67,13 @@ const eslintConfig: Linter.Config = {
       // https://eslint.org/docs/latest/user-guide/configuring/language-options
       env: {
         browser: true,
-        node: true,
         commonjs: true,
         es2022: true,
-        worker: true,
+        jasmine: true,
         jest: true,
         mocha: true,
-        jasmine: true
+        node: true,
+        worker: true
       },
       extends: [
         'eslint:recommended',
@@ -180,7 +180,6 @@ const eslintConfig: Linter.Config = {
 
         'unused-imports/no-unused-imports': 'warn',
 
-        'react/react-in-jsx-scope': OFF,
         'react/no-unescaped-entities': OFF,
         // Sometimes we do need the props as a whole, e.g. when spreading
         'react/destructuring-assignment': OFF,
@@ -209,15 +208,16 @@ const eslintConfig: Linter.Config = {
         //   { ignoreFunctionalComponents: true }
         // ],
         'react/require-default-props': OFF,
-        'react-hooks/rules-of-hooks': ERROR,
+        'react/react-in-jsx-scope': OFF,
         'react-hooks/exhaustive-deps': WARNING,
+        'react-hooks/rules-of-hooks': ERROR,
 
         'jsx-a11y/aria-role': [OFF],
         'jsx-a11y/anchor-is-valid': OFF,
+        'jsx-a11y/click-events-have-key-events': OFF,
         'jsx-a11y/html-has-lang': OFF,
         'jsx-a11y/no-autofocus': OFF,
         'jsx-a11y/no-redundant-roles': OFF,
-        'jsx-a11y/click-events-have-key-events': OFF,
         'jsx-a11y/no-static-element-interactions': OFF,
         'jsx-a11y/no-noninteractive-element-interactions': OFF,
 

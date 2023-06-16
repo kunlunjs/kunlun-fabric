@@ -45,14 +45,17 @@ generateFile('lint-staged.config.js', {
 generateFile('verify-commit-msg.js', {
   contentFile: '../verify-commit-msg.js'
 })
+generateFile('.npmrc', {
+  contentFile: '../.npmrc'
+})
 
 const devDependencies = [
-  '@types/eslint',
   '@types/node',
+  '@types/eslint',
   '@types/prettier',
-  'eslint',
-  'devmoji',
   'husky',
+  'devmoji',
+  'eslint',
   'prettier',
   'stylelint',
   'typescript'
@@ -100,7 +103,7 @@ async function run() {
     // spinner.start(`Installation in progress... ${get('coffee')}\n`)
     // try {
     //   for (const dep of uninstalled) {
-    //     // NOTE: husky 依赖 git
+    // NOTE: husky 依赖 git
     //     if (dep === 'husky' && !existsSync(resolve(cwd, '.git'))) {
     //       console.log(chalk.gray(`> git init\n`))
     //       await execPromise(`git init`)

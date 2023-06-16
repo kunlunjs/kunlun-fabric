@@ -61,7 +61,8 @@ export function generateFile(
     | 'stylelint.config.js'
     | 'extensions.json'
     | 'launch.json'
-    | 'settings.json',
+    | 'settings.json'
+    | '.npmrc',
   {
     packageFieldName,
     contentFile,
@@ -69,19 +70,19 @@ export function generateFile(
     output
   }: {
     /**
-     * 在 package.json 中的 name
+     * package.json field name
      */
     packageFieldName?: packageFieldName
     /**
-     * 内容
+     * File content
      */
     contentFile?: string
     /**
-     * 需要排除的内容
+     * Content that needs to be excluded
      */
     exclude?: string[]
     /**
-     * 输出目录
+     * Output directory
      */
     output?: string
   }
@@ -93,7 +94,7 @@ export function generateFile(
     output
   )
   if (!isExistFile) {
-    // 判断是否包含目录及确认目录已建
+    // Confirm that the folder already exists or create a new one.
     if (output.match(/\//)) {
       const dir = output.match(/(.*\/)[\w\-.]+$/)[1]
       const dirname = resolve(cwd, dir)

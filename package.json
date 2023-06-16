@@ -6,6 +6,7 @@
     "access": "public"
   },
   "files": [
+    ".npmrc",
     ".husky",
     ".vscode",
     "dist",

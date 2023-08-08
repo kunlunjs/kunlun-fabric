@@ -6,8 +6,8 @@ Project basic configurations include ESLint, Prettier, StyleLint, Husky, lint-st
 
 ```bash
 pnpm i @kunlunjs/fabric -D
-# Where "@types/prettier" "@types/eslint" "stylelint" is optional
-pnpm i @types/prettier prettier @types/eslint eslint stylelint devmoji husky lint-staged @types/node typescript -D
+# Where "@types/eslint" "stylelint" is optional
+pnpm i prettier @types/eslint eslint stylelint devmoji husky lint-staged @types/node typescript -D
 ```
 
 ## Usage

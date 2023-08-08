@@ -29,7 +29,12 @@
     "prepare": "husky install",
     "build": "tsc -p tsconfig.build.json",
     "postinstall": "node dist/pregenerator.js",
-    "types:check": "tsc --pretty --noEmit",
+    "lint": "eslint src/**/* --ext .js,.ts,.tsx ./src --config .eslintrc.cjs --ignore-path .eslintignore --fix --cache",
+    "stylelint": "stylelint \"**/*.{css,scss,sass,less}\" \"**/min.css/**\" --config ./stylelint.config.js --allow-empty-input -i ./.stylelintignore --fix -f verbose",
+    "prettier": "prettier \"**/*.+(js|json|ts|tsx)\" --cache",
+    "format": "npm run prettier -- --write",
+    "format:check": "npm run prettier -- --check --list-different",
+    "types:check": "tsc --project tsconfig.json --pretty --noEmit",
     "prerelease": "npm run build",
     "release": "release-it"
   },
@@ -106,7 +111,6 @@
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.4.1",
     "@types/node-emoji": "^1.8.2",
-    "@types/prettier": "^2.7.3",
     "devmoji": "^2.3.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
@@ -115,13 +119,12 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "@types/node": "*",
     "@types/eslint": "*",
-    "@types/prettier": "*",
-    "husky": "*",
-    "lint-staged": "*",
+    "@types/node": "*",
     "devmoji": "*",
     "eslint": "*",
+    "husky": "*",
+    "lint-staged": "*",
     "prettier": "*",
     "stylelint": "*",
     "typescript": "*"
@@ -144,9 +147,6 @@
     },
     "eslint": {
       "optional": false
-    },
-    "@types/prettier": {
-      "optional": true
     },
     "prettier": {
       "optional": false

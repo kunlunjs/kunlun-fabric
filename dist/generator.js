@@ -86,7 +86,6 @@ utils_1.ignores.forEach(utils_1.writeFile);
 var devDependencies = [
     '@types/node',
     '@types/eslint',
-    '@types/prettier',
     'husky',
     'devmoji',
     'eslint',

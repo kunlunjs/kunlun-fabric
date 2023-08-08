@@ -52,7 +52,6 @@ generateFile('.npmrc', {
 const devDependencies = [
   '@types/node',
   '@types/eslint',
-  '@types/prettier',
   'husky',
   'devmoji',
   'eslint',

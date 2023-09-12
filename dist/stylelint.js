@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var defineStylelintConfig = {
     extends: [
         'stylelint-config-standard',
-        'stylelint-config-standard-scss',
         'stylelint-config-css-modules',
         'stylelint-config-rational-order',
         'stylelint-no-unsupported-browser-features',

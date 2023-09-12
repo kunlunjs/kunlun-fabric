@@ -91,6 +91,7 @@
     "postcss": "^8.4.29",
     "postcss-scss": "^4.0.8",
     "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
     "stylelint": "^15.10.3",
     "stylelint-config-css-modules": "^4.3.0",
     "stylelint-config-rational-order": "^0.1.2",
@@ -111,7 +112,6 @@
     "devmoji": "^2.3.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
-    "prettier-plugin-tailwindcss": "^0.5.4",
     "release-it": "^16.1.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"

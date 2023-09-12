@@ -13,7 +13,34 @@ module.exports = {
   rangeStart: 0,
   rangeEnd: Infinity,
   endOfLine: 'auto',
-  plugins: [require('prettier-plugin-tailwindcss')],
+  importOrder: [
+    '^(react/(.*)$)|^(react$)',
+    '^(next/(.*)$)|^(next$)',
+    '<THIRD_PARTY_MODULES>',
+    '',
+    '^types$',
+    '^@/env(.*)$',
+    '^@/types/(.*)$',
+    '^@/config/(.*)$',
+    '^@/lib/(.*)$',
+    '^@/hooks/(.*)$',
+    '^@/components/ui/(.*)$',
+    '^@/components/(.*)$',
+    '^@/styles/(.*)$',
+    '^@/app/(.*)$',
+    '',
+    '^[./]'
+  ],
+  importOrderSeparation: false,
+  importOrderSortSpecifiers: true,
+  importOrderBuiltinModulesToTop: true,
+  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
+  importOrderMergeDuplicateImports: true,
+  importOrderCombineTypeAndValueImports: true,
+  plugins: [
+    require.resolve('prettier-plugin-tailwindcss'),
+    require('@ianvs/prettier-plugin-sort-imports')
+  ],
   // tailwindConfig: './<path to>/tailwind.config.js',
   overrides: [
     {

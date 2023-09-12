@@ -1,5 +1,6 @@
 import { sync } from 'command-exists'
 import { get } from 'node-emoji'
+
 import { pkg } from './root'
 import { generateFile, ignores, writeFile } from './utils'
 

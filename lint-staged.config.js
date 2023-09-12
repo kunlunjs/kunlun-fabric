@@ -10,7 +10,7 @@ module.exports = {
   ],
   '*': [
     // https://prettier.io/docs/en/cli.html
-    'prettier --ignore-unknown --ignore-path ./.prettierignore --write --list-different'
+    'prettier --config prettier.config.js --ignore-unknown --ignore-path ./.prettierignore --write --list-different'
     // "cspell --no-must-find-files --no-progress"
   ]
 }

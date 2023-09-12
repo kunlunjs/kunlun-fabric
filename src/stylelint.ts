@@ -3,7 +3,6 @@ import type { Config } from 'stylelint'
 const defineStylelintConfig: Config = {
   extends: [
     'stylelint-config-standard',
-    'stylelint-config-standard-scss',
     'stylelint-config-css-modules',
     'stylelint-config-rational-order',
     'stylelint-no-unsupported-browser-features',

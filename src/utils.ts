@@ -1,7 +1,8 @@
 import { exec, execSync } from 'child_process'
-import { existsSync, writeFileSync, readFileSync, mkdirpSync } from 'fs-extra'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import os from 'os'
 import { resolve } from 'path'
+
 // https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json
 // import emoji from 'node-emoji'
 import { configFiles } from './configs'
@@ -99,7 +100,9 @@ export function generateFile(
       const dir = output.match(/(.*\/)[\w\-.]+$/)[1]
       const dirname = resolve(cwd, dir)
       if (!existsSync(dirname)) {
-        mkdirpSync(dirname)
+        mkdirSync(dirname, {
+          recursive: true
+        })
       }
     }
     console.log(`\x1b[32m√ \x1b[90m${output}\x1b[0m`)

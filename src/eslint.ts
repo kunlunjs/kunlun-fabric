@@ -148,7 +148,7 @@ const eslintConfig: Linter.Config = {
                 position: 'before'
               },
               { pattern: 'react', group: 'builtin', position: 'before' },
-              { pattern: 'fs-extra', group: 'builtin' },
+              // { pattern: 'fs-extra', group: 'builtin' },
               { pattern: 'lodash', group: 'external', position: 'before' },
               { pattern: 'clsx', group: 'external', position: 'before' },
               {

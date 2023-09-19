@@ -1,6 +1,6 @@
 {
   "name": "@kunlunjs/fabric",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "ESLint, Prettier, StyleLint, husky, lint-staged, git commit message verify configuration for front-end projects",
   "publishConfig": {
     "access": "public"

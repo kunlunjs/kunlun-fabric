@@ -95,7 +95,7 @@ module.exports = defineConfig({
         ],
         // 'linebreak-style': [ERROR, 'unix'],
 
-        // import 排序
+        // import sort
         'import/default': OFF,
         'import/no-named-as-default': OFF,
         'import/no-named-as-default-member': OFF,
@@ -240,6 +240,21 @@ module.exports = defineConfig({
         jest: true,
         mocha: true,
         jasmine: true
+      }
+    },
+    {
+      files: ['cypress/**/*', '**/*.cy.*'],
+      env: {
+        // TODO: Environment key "cypress/globals" is unknown
+        // 'cypress/globals': true
+      },
+      rules: {
+        '@typescript-eslint/no-var-requires': OFF,
+        'cypress/no-unnecessary-waiting': OFF,
+        'jest/valid-title': OFF,
+        'testing-library/await-async-utils': OFF,
+        'testing-library/await-async-query': OFF,
+        'testing-library/prefer-screen-queries': OFF
       }
     },
     {

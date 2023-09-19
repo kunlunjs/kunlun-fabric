@@ -300,6 +300,9 @@ const eslintConfig: Linter.Config = {
     },
     {
       files: ['cypress/**/*', '**/*.cy.*'],
+      env: {
+        'cypress/globals': true
+      },
       rules: {
         '@typescript-eslint/no-var-requires': OFF,
         'cypress/no-unnecessary-waiting': OFF,

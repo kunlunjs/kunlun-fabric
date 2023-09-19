@@ -14,11 +14,11 @@ const defineStylelintConfig: Config = {
   ],
   customSyntax: require('postcss-less'),
   rules: {
-    'block-no-empty': null,
-    'no-empty-source': null,
     'at-rule-no-unknown': null,
-    'selector-class-pattern': null,
+    'block-no-empty': null,
     'no-descending-specificity': null,
+    'no-empty-source': null,
+    'selector-class-pattern': null,
     'prettier/prettier': true
   }
 }

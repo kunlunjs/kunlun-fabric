@@ -1,0 +1,8 @@
+ls:
+  .js: snake_case
+  .ts: snake_case | camelCase
+  .d.ts: PascalCase
+  .html: regex:[a-z0-9]+
+
+ignore:
+  - node_modules

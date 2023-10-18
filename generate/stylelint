@@ -4,9 +4,9 @@
  */
 module.exports = {
   extends: [
-    // default: less
+    // support less
     require.resolve('@kunlunjs/fabric/dist/stylelint')
-    // or
+    // support scss/sass
     // require.resolve('@kunlunjs/fabric/dist/stylelint-scss')
   ]
 }

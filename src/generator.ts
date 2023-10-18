@@ -49,6 +49,9 @@ generateFile('verify-commit-msg.js', {
 generateFile('.npmrc', {
   contentFile: '../.npmrc'
 })
+generateFile('.ls-lint.yml', {
+  contentFile: '../.ls-lint.yml'
+})
 
 const devDependencies = [
   '@types/node',

@@ -63,7 +63,8 @@ export function generateFile(
     | 'extensions.json'
     | 'launch.json'
     | 'settings.json'
-    | '.npmrc',
+    | '.npmrc'
+    | '.ls-lint.yml',
   {
     packageFieldName,
     contentFile,

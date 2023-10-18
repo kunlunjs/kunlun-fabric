@@ -83,6 +83,9 @@ utils_1.ignores.forEach(utils_1.writeFile);
 (0, utils_1.generateFile)('.npmrc', {
     contentFile: '../.npmrc'
 });
+(0, utils_1.generateFile)('.ls-lint.yml', {
+    contentFile: '../.ls-lint.yml'
+});
 var devDependencies = [
     '@types/node',
     '@types/eslint',
